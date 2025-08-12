@@ -89,7 +89,7 @@ pnpm install
 
 Then, run the development server:
 
-```bash
+```bash in
 npm run dev
 # or
 yarn dev
