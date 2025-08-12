@@ -1,15 +1,10 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -23,4 +18,96 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Gorgeous visuals */
+.animate-blob {
+  animation: blob 12s infinite;
+}
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+@keyframes blob {
+  0%, 100% { transform: translate(0,0) scale(1); }
+  33% { transform: translate(20px, -30px) scale(1.05); }
+  66% { transform: translate(-25px, 10px) scale(0.98); }
+}
+
+/* Gradient text helper */
+.gradient-text {
+  background: linear-gradient(90deg, #60a5fa, #a78bfa, #f472b6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Glass card */
+.glass {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.dark .glass {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Shiny glare */
+.shine {
+  position: relative;
+  overflow: hidden;
+}
+.shine::after {
+  content: "";
+  position: absolute;
+  top: -120%;
+  left: -120%;
+  width: 240%;
+  height: 240%;
+  background: conic-gradient(from 0deg, transparent 10%, rgba(255,255,255,0.08), transparent 60%);
+  transform: rotate(15deg);
+  transition: transform 0.6s ease;
+}
+.shine:hover::after {
+  transform: rotate(35deg);
+}
+
+.shadow-stack {
+  box-shadow:
+    0 1px 2px rgba(0,0,0,0.2),
+    0 4px 8px rgba(0,0,0,0.18),
+    0 12px 24px rgba(168,85,247,0.18),
+    0 24px 48px rgba(217,70,239,0.12);
+}
+
+/* Inputs */
+.input {
+  height: 44px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.85);
+  padding: 0 12px;
+  transition: box-shadow 200ms ease, border-color 200ms ease, background 200ms ease;
+}
+
+.dark .input {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.85);
+}
+
+.input:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(168,85,247,0.18);
+  border-color: rgba(168,85,247,0.45);
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.dark .input:focus {
+  background: rgba(0, 0, 0, 0.92);
 }
