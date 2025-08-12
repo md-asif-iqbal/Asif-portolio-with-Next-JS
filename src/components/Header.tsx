@@ -44,7 +44,7 @@ export default function Header(): JSX.Element {
             whileTap={{ scale: 0.95 }}
           >
             <Link href="#top" className="font-semibold tracking-tight">
-              M D. Asif Iqbal
+              MD. Asif Iqbal
             </Link>
           </motion.div>
 
