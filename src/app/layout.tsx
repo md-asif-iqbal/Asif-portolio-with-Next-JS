@@ -5,11 +5,11 @@ import Spotlight from "@/components/Spotlight";
 import Socials from "@/components/Socials";
 
 export const metadata: Metadata = {
-  title: "M D. Asif Iqbal – Portfolio",
+  title: "Md. Asif Iqbal – Portfolio",
   description: "MERN Stack Developer building scalable, secure web applications.",
   metadataBase: new URL("https://example.com"),
   openGraph: {
-    title: "M D. Asif Iqbal – Portfolio",
+    title: "Md. Asif Iqbal – Portfolio",
     description: "MERN Stack Developer building scalable, secure web applications.",
     url: "https://example.com",
     siteName: "Asif Iqbal Portfolio",
