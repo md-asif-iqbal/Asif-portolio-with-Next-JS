@@ -5,17 +5,17 @@ import Spotlight from "@/components/Spotlight";
 import Socials from "@/components/Socials";
 
 export const metadata: Metadata = {
-  title: "Md. Asif Iqbal – Portfolio",
-  description: "MERN Stack Developer building scalable, secure web applications.",
-  metadataBase: new URL("https://example.com"),
+  title: "Md. Asif Iqbal – Software Engineer",
+  description:
+    "Software Engineer with 2+ years of experience building production-grade web apps using MERN stack, Next.js & TypeScript.",
+  metadataBase: new URL("https://asif-portfolio-three.vercel.app"),
   openGraph: {
-    title: "Md. Asif Iqbal – Portfolio",
-    description: "MERN Stack Developer building scalable, secure web applications.",
-    url: "https://example.com",
+    title: "Md. Asif Iqbal – Software Engineer",
+    description:
+      "Software Engineer with 2+ years of experience building production-grade web apps using MERN stack, Next.js & TypeScript.",
+    url: "https://asif-portfolio-three.vercel.app",
     siteName: "Asif Iqbal Portfolio",
-    images: [
-      { url: "/next.svg", width: 1200, height: 630, alt: "Portfolio" },
-    ],
+    images: [{ url: "/next.svg", width: 1200, height: 630, alt: "Portfolio" }],
     type: "website",
   },
 };
@@ -26,8 +26,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="antialiased">
+    <html lang="en" className="dark">
+      <head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className="antialiased noise">
         <Background />
         <Spotlight />
         <Socials />

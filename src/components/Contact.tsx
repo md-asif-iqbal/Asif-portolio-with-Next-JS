@@ -4,36 +4,42 @@ import Section from "./Section";
 import type { JSX } from "react";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import emailjs from '@emailjs/browser';
+import emailjs from "@emailjs/browser";
+import { Mail, Phone, MapPin, Linkedin, Github } from "lucide-react";
+
+const contactInfo = [
+  { icon: <Phone className="w-4 h-4" />, label: "+88 01715-779924", href: "tel:+8801715779924", color: "#10b981" },
+  { icon: <Mail className="w-4 h-4" />, label: "md.asifiqbal2008@gmail.com", href: "mailto:md.asifiqbal2008@gmail.com", color: "#06b6d4" },
+  { icon: <MapPin className="w-4 h-4" />, label: "Badda, Dhaka, Bangladesh", href: "#", color: "#8b5cf6" },
+  { icon: <Linkedin className="w-4 h-4" />, label: "LinkedIn", href: "https://linkedin.com/in/md-asif-iqbal-652473185/", color: "#0077b5" },
+  { icon: <Github className="w-4 h-4" />, label: "GitHub", href: "https://github.com/md-asif-iqbal", color: "#e8e8ef" },
+];
 
 export default function Contact(): JSX.Element {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setSubmitStatus('idle');
-    setErrorMessage('');
+    setSubmitStatus("idle");
+    setErrorMessage("");
 
     const formData = new FormData(e.currentTarget);
-    const name = formData.get('name') as string;
-    const email = formData.get('email') as string;
-    const message = formData.get('message') as string;
+    const name = formData.get("name") as string;
+    const email = formData.get("email") as string;
+    const message = formData.get("message") as string;
 
-    // Check if EmailJS is properly configured
-    const serviceId = 'service_r7cb437';
-    const templateId = 'template_0123456789'; // This looks like a placeholder
-    const publicKey = 'auuV7MB4LFzmg-azp';
+    const serviceId = "service_r7cb437";
+    const templateId = "template_0123456789";
+    const publicKey = "auuV7MB4LFzmg-azp";
 
-    // If template ID is still a placeholder, use fallback method
-    if (templateId === 'template_0123456789') {
-      // Fallback to mailto method
+    if (templateId === "template_0123456789") {
       const subject = `Portfolio Contact from ${name}`;
       const body = `From: ${email}\n\n${message}`;
       window.location.href = `mailto:md.asifiqbal2008@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      setSubmitStatus('success');
+      setSubmitStatus("success");
       setIsSubmitting(false);
       return;
     }
@@ -42,42 +48,26 @@ export default function Contact(): JSX.Element {
       from_name: name,
       from_email: email,
       message: message,
-      to_email: 'md.asifiqbal2008@gmail.com',
+      to_email: "md.asifiqbal2008@gmail.com",
     };
 
     try {
-      console.log('Attempting to send email with EmailJS...');
-      console.log('Service ID:', serviceId);
-      console.log('Template ID:', templateId);
-      console.log('Template Params:', templateParams);
-
-      const result = await emailjs.send(
-        serviceId,
-        templateId,
-        templateParams,
-        publicKey
-      );
-
-      console.log('EmailJS Result:', result);
-
+      const result = await emailjs.send(serviceId, templateId, templateParams, publicKey);
       if (result.status === 200) {
-        setSubmitStatus('success');
+        setSubmitStatus("success");
         (e.target as HTMLFormElement).reset();
       } else {
-        setSubmitStatus('error');
+        setSubmitStatus("error");
         setErrorMessage(`EmailJS returned status: ${result.status}`);
       }
     } catch (error: unknown) {
-      console.error('EmailJS Error:', error);
-      setSubmitStatus('error');
-      
-      // Provide more specific error messages
-      if (error && typeof error === 'object' && 'text' in error) {
+      setSubmitStatus("error");
+      if (error && typeof error === "object" && "text" in error) {
         setErrorMessage(`EmailJS Error: ${(error as { text: string }).text}`);
-      } else if (error && typeof error === 'object' && 'message' in error) {
+      } else if (error && typeof error === "object" && "message" in error) {
         setErrorMessage(`Error: ${(error as { message: string }).message}`);
       } else {
-        setErrorMessage('Failed to send message. Please check your EmailJS configuration.');
+        setErrorMessage("Failed to send message. Please try again.");
       }
     } finally {
       setIsSubmitting(false);
@@ -85,127 +75,108 @@ export default function Contact(): JSX.Element {
   };
 
   return (
-    <Section id="contact" title="Get in touch" subtitle="Contact">
-      <motion.form
-        initial={{ opacity: 0, y: 12 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.4 }}
-        onSubmit={handleSubmit}
-        className="grid gap-4 sm:grid-cols-2"
-      >
+    <Section id="contact" title="Get In Touch" subtitle="Contact">
+      <div className="grid gap-8 lg:grid-cols-5">
+        {/* Contact info */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: 0.1 }}
+          className="lg:col-span-2 space-y-4"
         >
-          <input 
-            required 
-            name="name" 
-            placeholder="Your name" 
-            className="input w-full" 
-            disabled={isSubmitting}
-          />
+          <p className="text-foreground/50 text-sm leading-relaxed mb-6">
+            Have a project in mind or want to discuss potential opportunities? Feel free to reach out.
+            I&#39;m always open to new collaborations.
+          </p>
+
+          {contactInfo.map((item, idx) => (
+            <motion.a
+              key={item.label}
+              href={item.href}
+              target={item.href.startsWith("http") ? "_blank" : undefined}
+              rel={item.href.startsWith("http") ? "noreferrer" : undefined}
+              className="flex items-center gap-3 glass-card rounded-xl px-4 py-3 group"
+              initial={{ opacity: 0, x: -15 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.08 }}
+              whileHover={{
+                x: 4,
+                borderColor: `${item.color}25`,
+                boxShadow: `0 4px 20px ${item.color}10`,
+              }}
+            >
+              <div
+                className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+                style={{ color: item.color, backgroundColor: `${item.color}12` }}
+              >
+                {item.icon}
+              </div>
+              <span className="text-sm text-foreground/60 group-hover:text-foreground/80 transition-colors truncate">
+                {item.label}
+              </span>
+            </motion.a>
+          ))}
         </motion.div>
-        <motion.div
+
+        {/* Contact form */}
+        <motion.form
           initial={{ opacity: 0, x: 20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: 0.2 }}
+          transition={{ duration: 0.5 }}
+          onSubmit={handleSubmit}
+          className="lg:col-span-3 glass-card rounded-2xl p-6 space-y-4"
         >
-          <input 
-            required 
-            type="email" 
-            name="email" 
-            placeholder="Your email" 
-            defaultValue="" 
-            className="input w-full" 
+          <div className="grid gap-4 sm:grid-cols-2">
+            <input required name="name" placeholder="Your name" className="input w-full" disabled={isSubmitting} />
+            <input required type="email" name="email" placeholder="Your email" className="input w-full" disabled={isSubmitting} />
+          </div>
+          <textarea
+            required
+            name="message"
+            placeholder="Your message..."
+            className="input w-full min-h-[140px] py-3 resize-none"
+            style={{ height: "auto" }}
             disabled={isSubmitting}
           />
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: 0.3 }}
-          className="sm:col-span-2"
-        >
-          <textarea 
-            required 
-            name="message" 
-            placeholder="Message" 
-            className="min-h-32 rounded-md border border-black/10 dark:border-white/10 bg-transparent px-3 py-2 outline-none focus:ring-2 focus:ring-foreground/20 w-full input" 
-            disabled={isSubmitting}
-          />
-        </motion.div>
-        <motion.div 
-          className="sm:col-span-2"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: 0.4 }}
-        >
-          <motion.button 
+
+          <motion.button
             type="submit"
             disabled={isSubmitting}
-            className={`rounded-full px-5 py-2 text-sm font-medium transition-all duration-300 ${
-              isSubmitting 
-                ? 'bg-slate-400 text-slate-200 cursor-not-allowed' 
-                : 'bg-blue-600 hover:bg-blue-700 text-white'
+            className={`w-full sm:w-auto rounded-xl px-8 py-3 text-sm font-semibold transition-all duration-300 ${
+              isSubmitting
+                ? "bg-white/5 text-foreground/30 cursor-not-allowed border border-white/5"
+                : "bg-gradient-to-r from-cyan-500 to-emerald-500 text-white hover:shadow-lg hover:shadow-cyan-500/20"
             }`}
-            whileHover={!isSubmitting ? { 
-              scale: 1.05,
-              boxShadow: "0 10px 25px rgba(59, 130, 246, 0.3)"
-            } : {}}
-            whileTap={!isSubmitting ? { scale: 0.95 } : {}}
-            transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            whileHover={!isSubmitting ? { scale: 1.02 } : {}}
+            whileTap={!isSubmitting ? { scale: 0.98 } : {}}
           >
-            {isSubmitting ? 'Sending...' : 'Send message'}
+            {isSubmitting ? "Sending..." : "Send Message"}
           </motion.button>
-        </motion.div>
 
-        {/* Status Messages */}
-        {submitStatus === 'success' && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="sm:col-span-2 p-3 bg-green-100 dark:bg-green-900/20 border border-green-300 dark:border-green-700 rounded-lg"
-          >
-            <p className="text-green-700 dark:text-green-300 text-sm">
-              ✅ Message sent successfully! I&apos;ll get back to you soon.
-            </p>
-          </motion.div>
-        )}
+          {/* Status */}
+          {submitStatus === "success" && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="p-4 bg-emerald-500/10 border border-emerald-500/20 rounded-xl"
+            >
+              <p className="text-emerald-400 text-sm">Message sent successfully! I&apos;ll get back to you soon.</p>
+            </motion.div>
+          )}
 
-        {submitStatus === 'error' && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="sm:col-span-2 p-3 bg-red-100 dark:bg-red-900/20 border border-red-300 dark:border-red-700 rounded-lg"
-          >
-            <p className="text-red-700 dark:text-red-300 text-sm">
-              ❌ {errorMessage || 'Failed to send message. Please try again or contact me directly.'}
-            </p>
-            <p className="text-red-600 dark:text-red-400 text-xs mt-1">
-              💡 Tip: Check the browser console for detailed error information.
-            </p>
-          </motion.div>
-        )}
-      </motion.form>
-
-      <motion.div 
-        className="mt-6 text-sm text-foreground/70"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.4, delay: 0.5 }}
-      >
-        <p>Phone: +88 01715779924</p>
-        <p>Email: md.asifiqbal2008@gmail.com</p>
-        <p>Location: Uttar Badda, Dhaka, Bangladesh</p>
-        <p className="mt-1">Links: <a className="underline hover:text-blue-600 transition-colors" href="https://www.linkedin.com/in/md-asif-iqbal-652473185/" target="_blank" rel="noreferrer">LinkedIn</a> • <a className="underline hover:text-blue-600 transition-colors" href="https://github.com/md-asif-iqbal" target="_blank" rel="noreferrer">GitHub</a> </p>
-      </motion.div>
+          {submitStatus === "error" && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="p-4 bg-red-500/10 border border-red-500/20 rounded-xl"
+            >
+              <p className="text-red-400 text-sm">{errorMessage || "Failed to send. Please try again."}</p>
+            </motion.div>
+          )}
+        </motion.form>
+      </div>
     </Section>
   );
 }

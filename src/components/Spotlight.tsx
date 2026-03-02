@@ -14,9 +14,9 @@ export default function Spotlight(): JSX.Element {
 
   return (
     <div
-      className="pointer-events-none fixed inset-0 -z-10"
+      className="pointer-events-none fixed inset-0 -z-10 transition-opacity duration-300"
       style={{
-        background: `radial-gradient(600px 400px at ${position.x}px ${position.y}px, rgba(255,255,255,0.12), transparent 60%)`,
+        background: `radial-gradient(800px 500px at ${position.x}px ${position.y}px, rgba(6,182,212,0.04), transparent 60%)`,
       }}
     />
   );

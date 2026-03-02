@@ -7,37 +7,41 @@ import Image from "next/image";
 
 type Achievement = {
   title: string;
-  description?: string;
+  description: string;
   image?: string;
-  icon?: string;
-  year?: string;
+  icon: string;
+  year: string;
   verificationLink?: string;
+  color: string;
 };
 
 const achievements: Achievement[] = [
   {
     title: "HackerRank – JavaScript (Intermediate)",
-    description: "Achieved intermediate level proficiency in JavaScript programming with strong problem-solving skills",
+    description: "Advanced JS concepts and problem-solving proficiency demonstrated.",
     image: "/javascript.png",
     icon: "💻",
     year: "2024",
     verificationLink: "https://www.hackerrank.com/certificates/iframe/9c8b39c8ec09",
+    color: "#f59e0b",
   },
   {
     title: "HackerRank – Problem Solving (Basic)",
-    description: "Demonstrated strong problem-solving skills and algorithmic thinking in software development",
+    description: "Strong algorithms and logical reasoning skills validated.",
     image: "/software.png",
     icon: "🧩",
     year: "2024",
     verificationLink: "https://www.hackerrank.com/certificates/iframe/805e27d2e65e",
+    color: "#10b981",
   },
   {
-    title: "CSE Project Showcase",
-    description: "Presented innovative software engineering project at university level competition",
+    title: "UIU CSE Project Show – 1st Runner-up",
+    description: "Presented innovative software engineering project at university-level competition, 2023.",
     image: "/cse.png",
     icon: "🏆",
     year: "2023",
     verificationLink: "https://drive.google.com/file/d/1GzfSj-jrAhndTK5fpfx1AY-rx-Sv-BO4/view",
+    color: "#8b5cf6",
   },
 ];
 
@@ -46,112 +50,79 @@ export default function Achievements(): JSX.Element {
     <Section id="achievements" title="Achievements" subtitle="Highlights">
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {achievements.map((achievement, idx) => (
-          <motion.div
+          <motion.a
             key={achievement.title}
-            initial={{ opacity: 0, y: 20, scale: 0.95 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            href={achievement.verificationLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ 
-              duration: 0.5, 
-              delay: idx * 0.1,
-              type: "spring",
-              stiffness: 100,
-              damping: 15
+            transition={{ delay: idx * 0.12, type: "spring", stiffness: 150 }}
+            whileHover={{
+              y: -6,
+              borderColor: `${achievement.color}25`,
+              boxShadow: `0 20px 50px ${achievement.color}12`,
             }}
-            whileHover={{ 
-              scale: 1.03,
-              y: -8,
-              boxShadow: "0 20px 40px rgba(168, 85, 247, 0.15)"
-            }}
-            className="rounded-xl border border-black/10 dark:border-white/10 p-6 bg-white/50 dark:bg-black/20 backdrop-blur-sm relative overflow-hidden group cursor-pointer"
+            className="glass-card rounded-2xl overflow-hidden group block"
           >
-            {/* Background gradient on hover */}
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-br from-purple-400/20 to-pink-400/20 opacity-0 group-hover:opacity-100"
-              transition={{ duration: 0.3 }}
-            />
-            
-            {/* Achievement Image */}
-            <motion.div
-              className="w-full h-32 mb-4 rounded-lg bg-gradient-to-br from-gray-100/50 to-gray-200/50 dark:from-gray-800/20 dark:to-gray-700/20 flex items-center justify-center relative overflow-hidden border border-gray-200/20 dark:border-gray-700/20 group-hover:from-purple-100/50 group-hover:to-pink-100/50 dark:group-hover:from-purple-800/20 dark:group-hover:to-pink-800/20 group-hover:border-purple-200/20 dark:group-hover:border-purple-700/20 transition-all duration-300"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.3 }}
-            >
+            {/* Image */}
+            <div className="relative h-36 overflow-hidden bg-gradient-to-br from-white/5 to-white/[0.02]">
               {achievement.image ? (
-                <div className="relative w-full h-full">
-                  <Image 
-                    src={achievement.image} 
+                <>
+                  <Image
+                    src={achievement.image}
                     alt={achievement.title}
                     fill
-                    className="object-cover"
+                    className="object-cover opacity-70 group-hover:opacity-90 transition-all duration-500 group-hover:scale-105"
                   />
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-t from-purple-900/20 to-transparent"
-                    initial={{ opacity: 0 }}
-                    whileHover={{ opacity: 1 }}
-                    transition={{ duration: 0.3 }}
+                  <div
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    style={{
+                      background: `linear-gradient(to top, ${achievement.color}20, transparent)`,
+                    }}
                   />
-                </div>
+                </>
               ) : (
-                <div className="text-6xl opacity-60">
+                <div className="absolute inset-0 flex items-center justify-center text-5xl opacity-40">
                   {achievement.icon}
                 </div>
               )}
-            </motion.div>
-            
-            <div className="relative z-10">
-              {/* Year Badge */}
-              <motion.div
-                className="inline-block bg-gray-100 dark:bg-gray-800/30 text-gray-700 dark:text-gray-300 px-2 py-1 rounded-full text-xs font-medium mb-3 border border-gray-200/50 dark:border-gray-700/50 group-hover:bg-purple-100 dark:group-hover:bg-purple-800/30 group-hover:text-purple-700 dark:group-hover:text-purple-300 group-hover:border-purple-200/50 dark:group-hover:border-purple-700/50 transition-all duration-300"
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ 
-                  delay: idx * 0.1 + 0.2,
-                  type: "spring",
-                  stiffness: 300
-                }}
-              >
-                {achievement.year}
-              </motion.div>
-              
-              <motion.h3 
-                className="font-semibold tracking-tight text-base mb-2 leading-tight text-gray-900 dark:text-gray-100 group-hover:text-purple-700 dark:group-hover:text-purple-300 transition-colors duration-300"
-              >
-                {achievement.title}
-              </motion.h3>
-              
-              {achievement.description && (
-                <motion.p 
-                  className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed mb-3"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1 + 0.3 }}
-                >
-                  {achievement.description}
-                </motion.p>
-              )}
 
-              {/* Verification Link */}
-              {achievement.verificationLink && (
-                <motion.a
-                  href={achievement.verificationLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1 + 0.4 }}
-                  whileHover={{ scale: 1.05 }}
+              {/* Year badge */}
+              <div className="absolute top-3 right-3">
+                <span
+                  className="text-[10px] font-semibold px-2.5 py-1 rounded-full backdrop-blur-sm"
+                  style={{
+                    color: achievement.color,
+                    backgroundColor: `${achievement.color}15`,
+                    border: `1px solid ${achievement.color}25`,
+                  }}
                 >
-                  <span>🔗</span>
-                  <span>Verify Online</span>
-                </motion.a>
+                  {achievement.year}
+                </span>
+              </div>
+            </div>
+
+            {/* Content */}
+            <div className="p-5">
+              <h3 className="font-bold text-sm tracking-tight text-foreground/90 group-hover:text-foreground transition-colors leading-snug">
+                {achievement.title}
+              </h3>
+              <p className="text-xs text-foreground/40 mt-2 leading-relaxed">
+                {achievement.description}
+              </p>
+
+              {achievement.verificationLink && (
+                <div className="mt-3 flex items-center gap-1.5 text-[11px] font-medium" style={{ color: achievement.color }}>
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                  Verify Online
+                </div>
               )}
             </div>
-          </motion.div>
+          </motion.a>
         ))}
       </div>
     </Section>

@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MD. Asif Iqbal — Software Engineer</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Calibri', 'Segoe UI', Helvetica, Arial, sans-serif;
+            color: #2b2b2b;
+            background: #d6d6d6;
+            line-height: 1.42;
+            font-size: 10pt;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* ——— Each page is exactly A4 ——— */
+        .page {
+            width: 8.27in;
+            min-height: 11.69in;
+            max-height: 11.69in;
+            margin: 20px auto;
+            background: #fff;
+            padding: 0.35in 0.48in;
+            box-shadow: 0 1px 8px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page + .page { margin-top: 30px; }
+
+        /* Force page break between page 1 and page 2 */
+        .page-1 { page-break-after: always; }
+
+        /* ——— Download Button ——— */
+        .dl-btn {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            background: #2d2d2d;
+            color: #fff;
+            border: none;
+            padding: 12px 22px;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            letter-spacing: 0.4px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 100;
+            transition: background 0.2s;
+        }
+        .dl-btn:hover { background: #444; }
+
+        /* ——— Header ——— */
+        .hdr {
+            text-align: center;
+            padding-bottom: 6px;
+            border-bottom: 2.2px solid #2d2d2d;
+            margin-bottom: 8px;
+        }
+
+        .hdr h1 {
+            font-size: 20pt;
+            font-weight: 700;
+            color: #1a1a1a;
+            letter-spacing: 2.2px;
+        }
+
+        .hdr .role {
+            font-size: 10pt;
+            font-weight: 600;
+            color: #505050;
+            letter-spacing: 1.8px;
+            margin-bottom: 4px;
+        }
+
+        .cline {
+            font-size: 9.2pt;
+            color: #3a3a3a;
+            line-height: 1.7;
+        }
+
+        .cline a { color: #3a3a3a; text-decoration: none; }
+        .cline a:hover { text-decoration: underline; }
+        .sep { color: #aaa; margin: 0 5px; }
+
+        /* ——— Sections ——— */
+        .sec { margin-bottom: 8px; }
+
+        .sec-t {
+            font-size: 10pt;
+            font-weight: 700;
+            color: #1a1a1a;
+            text-transform: uppercase;
+            letter-spacing: 1.6px;
+            border-bottom: 1.2px solid #3a3a3a;
+            padding-bottom: 2px;
+            margin-bottom: 6px;
+        }
+
+        /* ——— Summary ——— */
+        .sum {
+            color: #383838;
+            text-align: justify;
+            line-height: 1.46;
+            font-size: 9.5pt;
+        }
+
+        /* ——— Skills ——— */
+        .sk-tbl { width: 100%; border-collapse: collapse; }
+        .sk-tbl td { padding: 1.5px 0; font-size: 9.5pt; vertical-align: top; line-height: 1.44; }
+        .sk-tbl .lb { font-weight: 700; color: #1a1a1a; width: 138px; white-space: nowrap; padding-right: 6px; }
+        .sk-tbl .vl { color: #383838; }
+
+        /* ——— Experience ——— */
+        .xp { margin-bottom: 8px; }
+        .xp:last-child { margin-bottom: 0; }
+
+        .xp-r1 { display: flex; justify-content: space-between; align-items: baseline; }
+        .xp-co { font-size: 10pt; font-weight: 700; color: #1a1a1a; }
+        .xp-loc { font-size: 9pt; color: #606060; }
+
+        .xp-r2 { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 3px; }
+        .xp-ti { font-size: 9.6pt; font-weight: 600; color: #404040; font-style: italic; }
+        .xp-dt { font-size: 9pt; color: #606060; }
+
+        ul.bl { list-style: disc; padding-left: 16px; }
+        ul.bl li { margin-bottom: 1px; color: #383838; line-height: 1.4; font-size: 9.3pt; }
+
+        /* ——— Projects ——— */
+        .pj { margin-bottom: 10px; }
+        .pj:last-child { margin-bottom: 0; }
+
+        .pj-r1 { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0; }
+        .pj-nm { font-size: 10pt; font-weight: 700; color: #1a1a1a; }
+        .pj-lk { font-size: 8.5pt; color: #505050; text-decoration: none; font-weight: 500; letter-spacing: 0.3px; }
+        .pj-lk:hover { text-decoration: underline; }
+
+        .pj-st { font-size: 8.6pt; color: #585858; margin-bottom: 2px; }
+        .pj-st strong { color: #2b2b2b; }
+
+        /* ——— Education ——— */
+        .ed { margin-bottom: 5px; }
+        .ed-r1 { display: flex; justify-content: space-between; align-items: baseline; }
+        .ed-dg { font-size: 10pt; font-weight: 700; color: #1a1a1a; }
+        .ed-dt { font-size: 9pt; color: #606060; }
+        .ed-sc { font-size: 9.5pt; color: #404040; font-style: italic; }
+        .ed-gp { font-size: 9pt; color: #505050; }
+
+        /* ——— Other ——— */
+        .lang-l { font-size: 9.6pt; color: #383838; }
+        .lang-l strong { color: #1a1a1a; }
+
+        /* ——— Print ——— */
+        @media print {
+            body { background: #fff; }
+            .page {
+                box-shadow: none;
+                margin: 0;
+                padding: 0.35in 0.48in;
+                width: 100%;
+                min-height: auto;
+                max-height: none;
+                overflow: visible;
+            }
+            .dl-btn { display: none !important; }
+        }
+
+        @page { margin: 0; size: A4; }
+    </style>
+</head>
+<body>
+
+<button class="dl-btn" onclick="window.print()">&#11123; Download PDF</button>
+
+<!-- ==================== PAGE 1 ==================== -->
+<div class="page page-1">
+
+    <!-- HEADER -->
+    <header class="hdr">
+        <h1>MD. ASIF IQBAL</h1>
+        <div class="role">SOFTWARE ENGINEER</div>
+        <div class="cline">
+            +88 01715-779924
+            <span class="sep">|</span>
+            <a href="mailto:md.asifiqbal2008@gmail.com">md.asifiqbal2008@gmail.com</a>
+            <span class="sep">|</span>
+            Badda, Dhaka, Bangladesh
+        </div>
+        <div class="cline">
+            <a href="https://linkedin.com/in/md-asif-iqbal-652473185/" target="_blank">LinkedIn</a>
+            <span class="sep">|</span>
+            <a href="https://github.com/md-asif-iqbal" target="_blank">GitHub</a>
+            <span class="sep">|</span>
+            <a href="https://asif-portfolio-three.vercel.app/" target="_blank">Portfolio</a>
+        </div>
+    </header>
+
+    <!-- SUMMARY -->
+    <section class="sec">
+        <h2 class="sec-t">Summary</h2>
+        <p class="sum">Software Engineer with 2+ years of experience building production-grade web applications using the MERN stack, Next.js, and TypeScript. Skilled in developing AI-driven SaaS products, enterprise POS/ERP systems, and streaming platforms. Focused on writing clean code, building secure REST APIs, responsive design, and cross-browser compatibility. Comfortable working in Agile teams with CI/CD workflows and thorough code reviews.</p>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="sec">
+        <h2 class="sec-t">Technical Skills</h2>
+        <table class="sk-tbl">
+            <tr>
+                <td class="lb">Languages</td>
+                <td class="vl">JavaScript, Python, C++</td>
+            </tr>
+            <tr>
+                <td class="lb">Frontend</td>
+                <td class="vl">React.js, Next.js, TypeScript, Tailwind CSS, Shadcn UI, Bootstrap, Material UI, HTML5, CSS3</td>
+            </tr>
+            <tr>
+                <td class="lb">Backend</td>
+                <td class="vl">Node.js, Express.js, Nest.js, Django, REST API Design</td>
+            </tr>
+            <tr>
+                <td class="lb">Databases</td>
+                <td class="vl">MongoDB, MySQL, PostgreSQL, Mongoose ODM</td>
+            </tr>
+            <tr>
+                <td class="lb">Auth &amp; Security</td>
+                <td class="vl">JWT, OAuth 2.0, Google Auth, Firebase Auth, RBAC, OWASP Best Practices</td>
+            </tr>
+            <tr>
+                <td class="lb">Testing &amp; QA</td>
+                <td class="vl">Jest, React Testing Library, Postman, Manual QA, Unit &amp; Integration Testing</td>
+            </tr>
+            <tr>
+                <td class="lb">DevOps &amp; Tools</td>
+                <td class="vl">Git, GitHub, CI/CD, Vercel, Netlify, Firebase, Docker (basic), Figma, VS Code, Jira</td>
+            </tr>
+            <tr>
+                <td class="lb">AI &amp; APIs</td>
+                <td class="vl">Google Gemini AI, OpenAI API, REST APIs, WebRTC, Third-party Integrations</td>
+            </tr>
+            <tr>
+                <td class="lb">Other</td>
+                <td class="vl">Responsive Web Design, Cross-browser Compatibility, SDLC, Agile (Scrum), Code Review, Debugging</td>
+            </tr>
+        </table>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="sec" style="margin-bottom:0;">
+        <h2 class="sec-t">Professional Experience</h2>
+
+        <!-- NaasMind -->
+        <div class="xp">
+            <div class="xp-r1">
+                <span class="xp-co">NaasMind</span>
+                <span class="xp-loc">Dhaka, Bangladesh</span>
+            </div>
+            <div class="xp-r2">
+                <span class="xp-ti">Software Engineer</span>
+                <span class="xp-dt">Nov 2025 &ndash; Present</span>
+            </div>
+            <ul class="bl">
+                <li>Own end-to-end development of multiple SaaS products using Next.js, React, Node.js, and MongoDB, serving hundreds of active users.</li>
+                <li>Designed and shipped an AI-powered interview platform leveraging Google Gemini for resume parsing, question generation, and candidate evaluation.</li>
+                <li>Architected an enterprise POS/ERP system with billing, inventory, HR payroll, multi-branch reporting, and financial ledgers.</li>
+                <li>Implemented JWT, Google OAuth, and granular RBAC across all products; managed Vercel deployments with CI/CD pipelines and 80%+ test coverage.</li>
+            </ul>
+        </div>
+
+        <!-- BulipeTech -->
+        <div class="xp">
+            <div class="xp-r1">
+                <span class="xp-co">BulipeTech Ltd.</span>
+                <span class="xp-loc">Dhaka, Bangladesh</span>
+            </div>
+            <div class="xp-r2">
+                <span class="xp-ti">Full Stack Developer</span>
+                <span class="xp-dt">Jan 2025 &ndash; Oct 2025</span>
+            </div>
+            <ul class="bl">
+                <li>Shipped three full-stack applications from scratch, each optimized for performance, scalability, and data security.</li>
+                <li>Mentored two junior developers through code reviews, pair programming, and structured onboarding sessions.</li>
+                <li>Built reusable React components with Context API for state management, cutting new-feature development time by about 25%.</li>
+                <li>Integrated REST APIs and third-party services (payment gateways, bulk SMS) into dashboards; improved MongoDB performance by 30% via indexing and caching.</li>
+            </ul>
+        </div>
+
+        <!-- Repwoop -->
+        <div class="xp">
+            <div class="xp-r1">
+                <span class="xp-co">Repwoop IT Company</span>
+                <span class="xp-loc">Dhaka, Bangladesh</span>
+            </div>
+            <div class="xp-r2">
+                <span class="xp-ti">Software Engineer</span>
+                <span class="xp-dt">Jul 2024 &ndash; Dec 2024</span>
+            </div>
+            <ul class="bl">
+                <li>Led frontend and backend development of a POS product with real-time billing, stock tracking, and reporting dashboards.</li>
+                <li>Built responsive interfaces with Next.js and Tailwind CSS; developed REST backend services on Node.js, Express, and MongoDB.</li>
+                <li>Added JWT authentication and role-based permissions so multiple user types could access the system securely.</li>
+                <li>Reduced page load times by roughly 35% with code splitting, lazy loading, and query optimization; configured CI/CD for production deployments.</li>
+            </ul>
+        </div>
+    </section>
+
+</div>
+
+<!-- ==================== PAGE 2 ==================== -->
+<div class="page page-2">
+
+    <!-- PROJECTS -->
+    <section class="sec">
+        <h2 class="sec-t">Key Projects</h2>
+
+        <!-- POS -->
+        <div class="pj">
+            <div class="pj-r1">
+                <span class="pj-nm">SoftLanding POS System V2</span>
+                <a class="pj-lk" href="https://soft-landing-pos-system-v2.vercel.app" target="_blank">View Project</a>
+            </div>
+            <div class="pj-st"><strong>Stack:</strong> Next.js, React, Node.js, Express, MongoDB, Tailwind CSS, JWT, RBAC</div>
+            <ul class="bl">
+                <li>Comprehensive POS/ERP with real-time billing, purchase orders, stock control, damage tracking, and return management.</li>
+                <li>15+ reporting modules: Profit &amp; Loss, Daily/Monthly/Summary Reports, Customer &amp; Supplier Ledgers, Low-Stock Alerts, and Category-wise breakdowns.</li>
+                <li>Full entity management covering Customers, Suppliers, Employees &amp; Payroll, Bank Accounts, Cash Book, and Asset Management.</li>
+                <li>Role-based permissions with granular access control, promotional SMS, expense tracking, and automated database backup.</li>
+            </ul>
+        </div>
+
+        <!-- Interview -->
+        <div class="pj">
+            <div class="pj-r1">
+                <span class="pj-nm">AI-Based Interview System</span>
+                <a class="pj-lk" href="https://ai-based-interview-systems.vercel.app" target="_blank">View Project</a>
+            </div>
+            <div class="pj-st"><strong>Stack:</strong> Next.js, React, Node.js, MongoDB, Google Gemini AI, WebRTC, Tailwind CSS</div>
+            <ul class="bl">
+                <li>AI hiring platform with Gemini-powered resume parsing, smart question generation, and live answer scoring.</li>
+                <li>Secure video interviews with face detection, tab-switch monitoring, full-screen enforcement, and anti-cheat proctoring.</li>
+                <li>Intelligent resume-to-job matching engine with weighted scoring and detailed skill-gap analysis.</li>
+                <li>Dual dashboards for Recruiters (post jobs, review AI reports) and Candidates (browse jobs, take interviews).</li>
+            </ul>
+        </div>
+
+        <!-- CineWave -->
+        <div class="pj">
+            <div class="pj-r1">
+                <span class="pj-nm">CineWave &mdash; Streaming Platform</span>
+                <a class="pj-lk" href="https://cinewave-movie-platform-bixw.vercel.app" target="_blank">View Project</a>
+            </div>
+            <div class="pj-st"><strong>Stack:</strong> Next.js, React, Node.js, Express, MongoDB, Tailwind CSS, Payment Gateway</div>
+            <ul class="bl">
+                <li>Movie and series streaming app with multi-device support, 60-day free trials, and tiered subscriptions (Monthly / 6-Month / Yearly).</li>
+                <li>Secure payment processing, social login, account management, and responsive design across all screen sizes.</li>
+                <li>Admin panel for content cataloguing, user analytics, subscription management, and revenue dashboards.</li>
+                <li>Optimized media delivery with lazy loading, image compression, and CDN integration for smooth streaming.</li>
+            </ul>
+        </div>
+
+        <!-- Event -->
+        <div class="pj">
+            <div class="pj-r1">
+                <span class="pj-nm">Event Planning &amp; Management System</span>
+                <a class="pj-lk" href="#" target="_blank">View Project</a>
+            </div>
+            <div class="pj-st"><strong>Stack:</strong> React, Node.js, Express, MongoDB, Firebase Auth, Tailwind CSS</div>
+            <ul class="bl">
+                <li>Full-stack event management tool for conferences, workshops, and weddings with booking, payment, and attendee notifications.</li>
+                <li>Separate interfaces for Users, Employees, and Admins; protected routes via Firebase Auth with social and email login.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section class="sec">
+        <h2 class="sec-t">Education</h2>
+        <div class="ed">
+            <div class="ed-r1">
+                <span class="ed-dg">B.Sc. in Software Engineering</span>
+                <span class="ed-dt">2019 &ndash; 2024</span>
+            </div>
+            <div class="ed-sc">United International University (UIU), Dhaka</div>
+            <div class="ed-gp">Major: Software Engineering</div>
+        </div>
+        <div class="ed">
+            <div class="ed-r1">
+                <span class="ed-dg">Higher Secondary Certificate (HSC) &mdash; Science</span>
+                <span class="ed-dt">2017 &ndash; 2019</span>
+            </div>
+            <div class="ed-sc">Adhyapak Abdul Majid College, Cumilla</div>
+            <div class="ed-gp">GPA: 5.00 / 5.00</div>
+        </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section class="sec">
+        <h2 class="sec-t">Certifications &amp; Achievements</h2>
+        <ul class="bl">
+            <li>HackerRank &ndash; JavaScript (Intermediate): Advanced JS concepts and problem-solving.</li>
+            <li>HackerRank &ndash; Problem Solving (Basic): Algorithms and logical reasoning.</li>
+            <li>UIU CSE Project Show Competition &ndash; 1st Runner-up, 2023.</li>
+        </ul>
+    </section>
+
+    <!-- LANGUAGES -->
+    <section class="sec" style="margin-bottom:0;">
+        <h2 class="sec-t">Languages</h2>
+        <div class="lang-l">
+            <strong>Bangla</strong> &mdash; Native
+            &nbsp;&nbsp;&nbsp;
+            <strong>English</strong> &mdash; Fluent (professional working proficiency)
+        </div>
+    </section>
+
+</div>
+
+</body>
+</html>
