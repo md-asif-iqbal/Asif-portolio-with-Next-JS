@@ -10,9 +10,9 @@ type Props = {
 };
 
 export default function Magnetic({ children, className, href }: Props): JSX.Element {
-  const ref = useRef<HTMLAnchorElement | null>(null);
+  const ref = useRef<HTMLElement | null>(null);
 
-  const onMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const onMouseMove = (e: React.MouseEvent<HTMLElement>) => {
     const el = ref.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
@@ -27,18 +27,29 @@ export default function Magnetic({ children, className, href }: Props): JSX.Elem
     el.style.transform = "translate(0,0)";
   };
 
-  const Comp: any = href ? "a" : "div";
+  if (href) {
+    return (
+      <a
+        ref={ref as React.RefObject<HTMLAnchorElement>}
+        href={href}
+        onMouseMove={onMouseMove}
+        onMouseLeave={onMouseLeave}
+        className={className}
+      >
+        {children}
+      </a>
+    );
+  }
 
   return (
-    <Comp
-      ref={ref}
-      href={href}
+    <div
+      ref={ref as React.RefObject<HTMLDivElement>}
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}
       className={className}
     >
       {children}
-    </Comp>
+    </div>
   );
 }
 

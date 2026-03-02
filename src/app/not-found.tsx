@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function NotFound() {
   return (
     <div className="mx-auto max-w-3xl px-6 py-48 text-center">
@@ -10,12 +12,12 @@ export default function NotFound() {
       <p className="mt-2 text-foreground/50">
         Sorry, the page you&apos;re looking for doesn&apos;t exist.
       </p>
-      <a
+      <Link
         href="/"
         className="mt-8 inline-block rounded-full bg-accent/10 border border-accent/20 px-6 py-2.5 text-sm font-medium text-accent hover:bg-accent/20 transition-colors"
       >
         Back to Home
-      </a>
+      </Link>
     </div>
   );
 }
