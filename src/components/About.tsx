@@ -4,84 +4,78 @@ import Section from "./Section";
 import type { JSX } from "react";
 import { motion } from "framer-motion";
 
+const highlights = [
+  { icon: "🚀", label: "2+ Years Experience", desc: "Building production apps" },
+  { icon: "💼", label: "SaaS & Enterprise", desc: "POS, ERP, AI platforms" },
+  { icon: "⚡", label: "Performance First", desc: "35% faster load times" },
+  { icon: "🔐", label: "Security Focused", desc: "JWT, OAuth, RBAC" },
+];
+
 export default function About(): JSX.Element {
   return (
-    <Section id="about" title="About me" subtitle="Introduction">
-      <div className="grid gap-6 md:grid-cols-2">
-        <motion.div
-          initial={{ opacity: 0, y: 20, scale: 0.95 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ 
-            duration: 0.6, 
-            type: "spring",
-            stiffness: 100,
-            damping: 15
-          }}
-          whileHover={{ 
-            scale: 1.02,
-            y: -5,
-            boxShadow: "0 20px 40px rgba(0,0,0,0.15)",
-            borderColor: "rgba(168, 85, 247, 0.3)"
-          }}
-          className="rounded-xl border border-black/10 dark:border-white/10 p-6 glass hover:bg-gradient-to-br hover:from-white/50 hover:to-purple-50/30 dark:hover:from-gray-800/50 dark:hover:to-purple-900/20 transition-all duration-500"
-        >
-          <motion.p 
-            className="text-foreground/80 leading-relaxed"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            Passionate MERN Stack Developer with a knack for turning complex problems into elegant, efficient web applications. Skilled in JavaScript, React, Node.js, and MongoDB, along with Next.js, TypeScript, Tailwind CSS, and Express.js. I focus on writing clean, scalable code and building secure APIs using JWT and RBAC.
-          </motion.p>
-        </motion.div>
+    <Section id="about" title="About Me" subtitle="Introduction">
+      <div className="grid gap-8 lg:grid-cols-5">
+        {/* Main description */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ 
-            duration: 0.6, 
-            delay: 0.1,
-            type: "spring",
-            stiffness: 100
-          }}
-          className="grid grid-cols-2 gap-3"
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="lg:col-span-3 glass-card rounded-2xl p-8"
         >
-          {[
-            "JavaScript / TypeScript",
-            "React / Next.js",
-            "Node.js / Express.js",
-            "MongoDB / PostgreSQL / MySQL",
-            "Tailwind CSS / Material UI / Bootstrap",
-            "JWT / RBAC / Security",
-          ].map((s, idx) => (
+          <p className="text-foreground/70 leading-relaxed text-[15px]">
+            Software Engineer with 2+ years of experience building production-grade web applications 
+            using the <span className="text-cyan-400 font-medium">MERN stack</span>,{" "}
+            <span className="text-emerald-400 font-medium">Next.js</span>, and{" "}
+            <span className="text-violet-400 font-medium">TypeScript</span>. 
+            Skilled in developing AI-driven SaaS products, enterprise POS/ERP systems, and streaming platforms.
+          </p>
+          <p className="mt-4 text-foreground/70 leading-relaxed text-[15px]">
+            Focused on writing clean code, building secure REST APIs, responsive design, and 
+            cross-browser compatibility. Comfortable working in Agile teams with CI/CD workflows 
+            and thorough code reviews.
+          </p>
+
+          {/* Tech stack pills */}
+          <div className="mt-6 flex flex-wrap gap-2">
+            {["React", "Next.js", "TypeScript", "Node.js", "Express.js", "MongoDB", "PostgreSQL", "Tailwind CSS", "JWT", "Docker"].map((tech, i) => (
+              <motion.span
+                key={tech}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.05, type: "spring", stiffness: 300 }}
+                whileHover={{ scale: 1.08, y: -2 }}
+                className="tag cursor-default"
+              >
+                {tech}
+              </motion.span>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Highlight cards */}
+        <div className="lg:col-span-2 grid grid-cols-2 gap-3">
+          {highlights.map((item, idx) => (
             <motion.div
-              key={s}
-              initial={{ opacity: 0, scale: 0.8, y: 10 }}
-              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              key={item.label}
+              initial={{ opacity: 0, y: 20, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ 
-                duration: 0.4, 
-                delay: idx * 0.08,
-                type: "spring",
-                stiffness: 200,
-                damping: 20
+              transition={{ delay: idx * 0.1, type: "spring", stiffness: 150 }}
+              whileHover={{
+                scale: 1.05,
+                borderColor: "rgba(6, 182, 212, 0.3)",
+                boxShadow: "0 8px 30px rgba(6, 182, 212, 0.1)",
               }}
-              whileHover={{ 
-                scale: 1.08,
-                y: -3,
-                backgroundColor: "rgba(168, 85, 247, 0.15)",
-                borderColor: "rgba(168, 85, 247, 0.4)",
-                boxShadow: "0 8px 25px rgba(168, 85, 247, 0.25)",
-                color: "rgba(168, 85, 247, 0.9)"
-              }}
-              className="rounded-lg border border-black/10 dark:border-white/10 px-4 py-3 text-sm cursor-default transition-all duration-300 hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 dark:hover:from-purple-900/20 dark:hover:to-pink-900/20 font-medium"
+              className="glass-card rounded-xl p-4 flex flex-col items-center text-center cursor-default"
             >
-              {s}
+              <span className="text-2xl mb-2">{item.icon}</span>
+              <span className="text-sm font-semibold text-foreground/90">{item.label}</span>
+              <span className="text-xs text-foreground/40 mt-1">{item.desc}</span>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </Section>
   );

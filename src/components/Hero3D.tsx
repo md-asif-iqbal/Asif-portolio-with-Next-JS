@@ -2,171 +2,118 @@
 
 import type { JSX } from "react";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
 
-type Props = {
-  size?: number;
-};
-
-export default function Hero3D({ size }: Props): JSX.Element {
-  const [circleSize, setCircleSize] = useState(360);
-  const [iconSize, setIconSize] = useState(90);
-
-  useEffect(() => {
-    const updateSize = () => {
-      let newSize = 360; // default desktop
-      if (window.innerWidth < 640) {
-        newSize = 280; // mobile
-      } else if (window.innerWidth < 1024) {
-        newSize = 320; // tablet
-      }
-      
-      if (size) {
-        newSize = size; // override if size prop is provided
-      }
-      
-      setCircleSize(newSize);
-      setIconSize(Math.floor(newSize * 0.25)); // 25% of circle size
-    };
-
-    updateSize();
-    window.addEventListener('resize', updateSize);
-    return () => window.removeEventListener('resize', updateSize);
-  }, [size]);
+export default function Hero3D(): JSX.Element {
+  const codeLines = [
+    { text: "const developer = {", color: "#06b6d4", indent: 0 },
+    { text: '  name: "Asif Iqbal",', color: "#10b981", indent: 1 },
+    { text: '  role: "Software Engineer",', color: "#10b981", indent: 1 },
+    { text: "  skills: [", color: "#8b5cf6", indent: 1 },
+    { text: '    "React", "Next.js",', color: "#f59e0b", indent: 2 },
+    { text: '    "Node.js", "TypeScript",', color: "#f59e0b", indent: 2 },
+    { text: '    "MongoDB", "PostgreSQL"', color: "#f59e0b", indent: 2 },
+    { text: "  ],", color: "#8b5cf6", indent: 1 },
+    { text: "  passion: true,", color: "#ef4444", indent: 1 },
+    { text: "};", color: "#06b6d4", indent: 0 },
+  ];
 
   return (
-    <div className="mx-auto grid place-items-center">
+    <div className="relative w-full max-w-md mx-auto">
+      {/* Glow background */}
+      <div className="absolute -inset-4 bg-gradient-to-r from-cyan-500/20 via-emerald-500/10 to-violet-500/20 rounded-2xl blur-2xl animate-pulse-glow" />
+
+      {/* Terminal window */}
       <motion.div
-        className="relative rounded-full p-[3px]"
-        style={{
-          width: circleSize,
-          height: circleSize,
-          background: "conic-gradient(from 0deg, #a855f7, #d946ef, #8b5cf6, #a855f7)",
-          boxShadow: "0 0 60px rgba(168,85,247,0.25)",
-        }}
-        animate={{
-          rotate: 360,
-        }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          ease: "linear",
-        }}
+        initial={{ opacity: 0, y: 30, rotateX: 10 }}
+        animate={{ opacity: 1, y: 0, rotateX: 0 }}
+        transition={{ duration: 0.8, delay: 0.3 }}
+        className="relative glass-card rounded-2xl overflow-hidden"
       >
-        <div className="relative h-full w-full overflow-hidden rounded-full bg-black/60">
-          {/* Developer Icon/Avatar in Center */}
-          <motion.div
-            className="absolute inset-0 flex items-center justify-center z-10"
-            animate={{
-              scale: [1, 1.05, 1],
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          >
-            <div 
-              className="relative rounded-full overflow-hidden border-4 border-purple-500/30 shadow-2xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center"
-              style={{
-                width: iconSize,
-                height: iconSize,
-              }}
-            >
-              <motion.div
-                className="text-white font-bold text-center"
-                style={{
-                  fontSize: Math.floor(iconSize * 0.4),
-                }}
-                animate={{
-                  rotate: [0, 5, -5, 0],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              >
-                👨‍💻
-              </motion.div>
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-500/20"
-                animate={{
-                  opacity: [0.3, 0.6, 0.3],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              />
-            </div>
-          </motion.div>
-          
-          <motion.div
-            className="absolute inset-0 flex items-center justify-center"
-            animate={{
-              scale: [1.2, 1, 1.2],
-              rotate: [360, 180, 0],
-            }}
-            transition={{
-              duration: 6,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1,
-            }}
-          >
-            <div 
-              className="bg-gradient-to-r from-purple-500 to-pink-500 rounded-full opacity-60"
-              style={{
-                width: Math.floor(circleSize * 0.4),
-                height: Math.floor(circleSize * 0.02),
-              }}
-            />
-          </motion.div>
+        {/* Terminal header */}
+        <div className="flex items-center gap-2 px-4 py-3 border-b border-white/5">
+          <div className="flex gap-1.5">
+            <div className="w-3 h-3 rounded-full bg-red-500/80" />
+            <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+            <div className="w-3 h-3 rounded-full bg-green-500/80" />
+          </div>
+          <span className="text-xs text-white/30 ml-2 font-mono">developer.ts</span>
+        </div>
 
-          <motion.div
-            className="absolute inset-0"
-            animate={{
-              background: [
-                "radial-gradient(60% 40% at 50% 20%, rgba(255,255,255,0.12), transparent)",
-                "radial-gradient(40% 60% at 80% 80%, rgba(255,255,255,0.08), transparent)",
-                "radial-gradient(60% 40% at 50% 20%, rgba(255,255,255,0.12), transparent)",
-              ],
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          />
-
-          {/* Floating particles */}
-          {[...Array(6)].map((_, i) => (
+        {/* Code content */}
+        <div className="p-5 font-mono text-sm leading-relaxed">
+          {codeLines.map((line, i) => (
             <motion.div
               key={i}
-              className="absolute bg-purple-400 rounded-full"
-              style={{
-                width: Math.floor(circleSize * 0.01),
-                height: Math.floor(circleSize * 0.01),
-                left: `${20 + (i * 15)}%`,
-                top: `${30 + (i * 10)}%`,
-              }}
-              animate={{
-                y: [0, -20, 0],
-                opacity: [0.5, 1, 0.5],
-                scale: [1, 1.2, 1],
-              }}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{
-                duration: 3,
-                repeat: Infinity,
-                delay: i * 0.5,
-                ease: "easeInOut",
+                duration: 0.4,
+                delay: 0.6 + i * 0.1,
+                ease: "easeOut",
               }}
-            />
+              className="flex items-center"
+              style={{ paddingLeft: `${line.indent * 16}px` }}
+            >
+              <span className="text-white/20 w-6 text-right mr-4 text-xs select-none">
+                {i + 1}
+              </span>
+              <span style={{ color: line.color }} className="opacity-90">
+                {line.text}
+              </span>
+            </motion.div>
           ))}
+
+          {/* Blinking cursor */}
+          <motion.div
+            className="flex items-center mt-1"
+            animate={{ opacity: [1, 0] }}
+            transition={{ duration: 0.8, repeat: Infinity, repeatType: "reverse" }}
+          >
+            <span className="text-white/20 w-6 text-right mr-4 text-xs select-none">
+              11
+            </span>
+            <span className="w-2 h-4 bg-cyan-400/80 rounded-sm" />
+          </motion.div>
+        </div>
+
+        {/* Bottom status bar */}
+        <div className="flex items-center justify-between px-4 py-2 border-t border-white/5 text-[10px] text-white/25">
+          <span>TypeScript</span>
+          <div className="flex gap-3">
+            <span>UTF-8</span>
+            <span>LF</span>
+            <span className="text-cyan-400/60">Ln 11, Col 1</span>
+          </div>
         </div>
       </motion.div>
+
+      {/* Floating tech icons around the terminal */}
+      {[
+        { emoji: "⚛️", x: -30, y: 20, delay: 1 },
+        { emoji: "🚀", x: "calc(100% + 10px)", y: 40, delay: 1.5 },
+        { emoji: "💻", x: 10, y: "calc(100% + 5px)", delay: 2 },
+        { emoji: "⚡", x: "calc(100% - 20px)", y: -20, delay: 2.5 },
+      ].map((item, i) => (
+        <motion.div
+          key={i}
+          className="absolute text-xl"
+          style={{ left: item.x, top: item.y }}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{
+            opacity: [0, 0.7, 0.7, 0],
+            scale: [0, 1, 1, 0.8],
+            y: [0, -10, -10, -20],
+          }}
+          transition={{
+            duration: 4,
+            delay: item.delay,
+            repeat: Infinity,
+            repeatDelay: 2,
+          }}
+        >
+          {item.emoji}
+        </motion.div>
+      ))}
     </div>
   );
 }
