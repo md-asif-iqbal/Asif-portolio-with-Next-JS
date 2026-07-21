@@ -24,7 +24,7 @@ export default function CustomCursor() {
       PRESSURE: 0.8,
       PRESSURE_ITERATIONS: 20,
       CURL: 30,
-      SPLAT_RADIUS: 0.2, // thin line for cursor effect
+      SPLAT_RADIUS: 0.25, // Adjusted to match the template
       SPLAT_FORCE: 6000,
       SHADING: true,
       COLORFUL: true,
@@ -32,7 +32,7 @@ export default function CustomCursor() {
       PAUSED: false,
       BACK_COLOR: { r: 0, g: 0, b: 0 },
       TRANSPARENT: true,
-      BLOOM: false,
+      BLOOM: false, // Turned off bloom as requested
       BLOOM_ITERATIONS: 8,
       BLOOM_RESOLUTION: 256,
       BLOOM_INTENSITY: 0.8,
@@ -47,29 +47,34 @@ export default function CustomCursor() {
     const forwardEvent = (e: MouseEvent | TouchEvent, type: string) => {
       if (!canvas) return;
       
-      let clientX, clientY;
+      let clientX = 0, clientY = 0;
       if (e instanceof MouseEvent) {
         clientX = e.clientX;
         clientY = e.clientY;
       } else if (e.touches && e.touches.length > 0) {
         clientX = e.touches[0].clientX;
         clientY = e.touches[0].clientY;
-      } else {
+      } else if (type !== "touchend") {
         return;
       }
 
-      const event = new MouseEvent(type, {
+      // Create a generic event to safely bypass readonly properties of MouseEvent
+      const customEvent = new Event(type, { bubbles: true, cancelable: true });
+      
+      // Inject required properties for webgl-fluid
+      Object.assign(customEvent, {
         clientX,
         clientY,
-        bubbles: true,
-        cancelable: true,
+        offsetX: clientX,
+        offsetY: clientY,
+        pageX: clientX,
+        pageY: clientY,
+        touches: (e as TouchEvent).touches,
+        targetTouches: (e as TouchEvent).targetTouches,
+        changedTouches: (e as TouchEvent).changedTouches,
       });
 
-      // webgl-fluid uses offsetX/offsetY, so we mock them
-      Object.defineProperty(event, "offsetX", { get: () => clientX });
-      Object.defineProperty(event, "offsetY", { get: () => clientY });
-
-      canvas.dispatchEvent(event);
+      canvas.dispatchEvent(customEvent);
     };
 
     const onMouseMove = (e: MouseEvent) => forwardEvent(e, "mousemove");
