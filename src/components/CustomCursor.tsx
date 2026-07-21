@@ -1,93 +1,107 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import { useEffect, useRef } from "react";
+import WebGLFluid from "webgl-fluid";
 
 export default function CustomCursor() {
-  const [isHovering, setIsHovering] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
-
-  // Use motion values for better performance (no re-renders on mouse move)
-  const cursorX = useMotionValue(-100);
-  const cursorY = useMotionValue(-100);
-
-  // Smooth springs for trailing effect
-  const springConfig = { damping: 25, stiffness: 300, mass: 0.5 };
-  const smoothX = useSpring(cursorX, springConfig);
-  const smoothY = useSpring(cursorY, springConfig);
-
-  const ringSpringConfig = { damping: 20, stiffness: 150, mass: 0.8 };
-  const ringX = useSpring(cursorX, ringSpringConfig);
-  const ringY = useSpring(cursorY, ringSpringConfig);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    setIsMounted(true);
-    
-    const updateMousePosition = (e: MouseEvent) => {
-      cursorX.set(e.clientX);
-      cursorY.set(e.clientY);
-    };
-    
-    const handleMouseOver = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      // Check if hovering over interactive elements
-      if (
-        target.tagName.toLowerCase() === "a" ||
-        target.tagName.toLowerCase() === "button" ||
-        target.closest("a") ||
-        target.closest("button") ||
-        window.getComputedStyle(target).cursor === "pointer"
-      ) {
-        setIsHovering(true);
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    // Initialize WebGL Fluid Simulation
+    WebGLFluid(canvas, {
+      TRIGGER: "hover",
+      IMMEDIATE: false,
+      AUTO: false,
+      INTERVAL: 3000,
+      SIM_RESOLUTION: 128,
+      DYE_RESOLUTION: 1024,
+      CAPTURE_RESOLUTION: 512,
+      DENSITY_DISSIPATION: 1,
+      VELOCITY_DISSIPATION: 0.3,
+      PRESSURE: 0.8,
+      PRESSURE_ITERATIONS: 20,
+      CURL: 30,
+      SPLAT_RADIUS: 0.2, // thin line for cursor effect
+      SPLAT_FORCE: 6000,
+      SHADING: true,
+      COLORFUL: true,
+      COLOR_UPDATE_SPEED: 10,
+      PAUSED: false,
+      BACK_COLOR: { r: 0, g: 0, b: 0 },
+      TRANSPARENT: true,
+      BLOOM: false,
+      BLOOM_ITERATIONS: 8,
+      BLOOM_RESOLUTION: 256,
+      BLOOM_INTENSITY: 0.8,
+      BLOOM_THRESHOLD: 0.6,
+      BLOOM_SOFT_KNEE: 0.7,
+      SUNRAYS: true,
+      SUNRAYS_RESOLUTION: 196,
+      SUNRAYS_WEIGHT: 1.0,
+    });
+
+    // Forward pointer events to the canvas so it works with pointer-events-none
+    const forwardEvent = (e: MouseEvent | TouchEvent, type: string) => {
+      if (!canvas) return;
+      
+      let clientX, clientY;
+      if (e instanceof MouseEvent) {
+        clientX = e.clientX;
+        clientY = e.clientY;
+      } else if (e.touches && e.touches.length > 0) {
+        clientX = e.touches[0].clientX;
+        clientY = e.touches[0].clientY;
       } else {
-        setIsHovering(false);
+        return;
       }
+
+      const event = new MouseEvent(type, {
+        clientX,
+        clientY,
+        bubbles: true,
+        cancelable: true,
+      });
+
+      // webgl-fluid uses offsetX/offsetY, so we mock them
+      Object.defineProperty(event, "offsetX", { get: () => clientX });
+      Object.defineProperty(event, "offsetY", { get: () => clientY });
+
+      canvas.dispatchEvent(event);
     };
 
-    window.addEventListener("mousemove", updateMousePosition);
-    window.addEventListener("mouseover", handleMouseOver);
+    const onMouseMove = (e: MouseEvent) => forwardEvent(e, "mousemove");
+    const onMouseDown = (e: MouseEvent) => forwardEvent(e, "mousedown");
+    const onMouseUp = (e: MouseEvent) => forwardEvent(e, "mouseup");
+    const onTouchStart = (e: TouchEvent) => forwardEvent(e, "touchstart");
+    const onTouchMove = (e: TouchEvent) => forwardEvent(e, "touchmove");
+    const onTouchEnd = (e: TouchEvent) => forwardEvent(e, "touchend");
+
+    // Add listeners to window to capture all events globally
+    window.addEventListener("mousemove", onMouseMove);
+    window.addEventListener("mousedown", onMouseDown);
+    window.addEventListener("mouseup", onMouseUp);
+    window.addEventListener("touchstart", onTouchStart, { passive: false });
+    window.addEventListener("touchmove", onTouchMove, { passive: false });
+    window.addEventListener("touchend", onTouchEnd);
 
     return () => {
-      window.removeEventListener("mousemove", updateMousePosition);
-      window.removeEventListener("mouseover", handleMouseOver);
+      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("mousedown", onMouseDown);
+      window.removeEventListener("mouseup", onMouseUp);
+      window.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("touchend", onTouchEnd);
     };
-  }, [cursorX, cursorY]);
-
-  if (!isMounted) return null;
+  }, []);
 
   return (
-    <>
-      {/* Inner Dot (Blend Mode Difference) */}
-      <motion.div
-        className="fixed top-0 left-0 w-4 h-4 bg-white rounded-full pointer-events-none z-[9999]"
-        style={{
-          x: smoothX,
-          y: smoothY,
-          translateX: "-50%",
-          translateY: "-50%",
-          mixBlendMode: "difference",
-        }}
-        animate={{
-          scale: isHovering ? 4.5 : 1,
-        }}
-        transition={{ type: "spring", stiffness: 300, damping: 20 }}
-      />
-      
-      {/* Outer Ring */}
-      <motion.div
-        className="fixed top-0 left-0 w-10 h-10 rounded-full border-[1.5px] border-white/20 pointer-events-none z-[9998]"
-        style={{
-          x: ringX,
-          y: ringY,
-          translateX: "-50%",
-          translateY: "-50%",
-        }}
-        animate={{
-          scale: isHovering ? 1.5 : 1,
-          opacity: isHovering ? 0 : 1,
-        }}
-        transition={{ type: "spring", stiffness: 300, damping: 25 }}
-      />
-    </>
+    <canvas
+      ref={canvasRef}
+      className="fixed top-0 left-0 pointer-events-none z-[9998]"
+      style={{ width: "100vw", height: "100vh" }}
+    />
   );
 }
