@@ -19,12 +19,12 @@ export default function CustomCursor() {
       SIM_RESOLUTION: 128,
       DYE_RESOLUTION: 1024,
       CAPTURE_RESOLUTION: 512,
-      DENSITY_DISSIPATION: 1,
+      DENSITY_DISSIPATION: 2.5, // Increased so the tail fades faster and feels lighter
       VELOCITY_DISSIPATION: 0.3,
       PRESSURE: 0.8,
       PRESSURE_ITERATIONS: 20,
       CURL: 30,
-      SPLAT_RADIUS: 0.25, // Adjusted to match the template
+      SPLAT_RADIUS: 0.15, // Reduced for a thinner, sharper line
       SPLAT_FORCE: 6000,
       SHADING: true,
       COLORFUL: true,
@@ -32,7 +32,7 @@ export default function CustomCursor() {
       PAUSED: false,
       BACK_COLOR: { r: 0, g: 0, b: 0 },
       TRANSPARENT: true,
-      BLOOM: false, // Turned off bloom as requested
+      BLOOM: true, // Bloom is needed for the glowing head in the screenshot
       BLOOM_ITERATIONS: 8,
       BLOOM_RESOLUTION: 256,
       BLOOM_INTENSITY: 0.8,
@@ -106,7 +106,7 @@ export default function CustomCursor() {
     <canvas
       ref={canvasRef}
       className="fixed top-0 left-0 pointer-events-none z-[9998]"
-      style={{ width: "100vw", height: "100vh", opacity: 0.2 }}
+      style={{ width: "100vw", height: "100vh", opacity: 0.6, mixBlendMode: "screen" }}
     />
   );
 }
