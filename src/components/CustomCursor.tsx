@@ -106,7 +106,7 @@ export default function CustomCursor() {
     <canvas
       ref={canvasRef}
       className="fixed top-0 left-0 pointer-events-none z-[9998]"
-      style={{ width: "100vw", height: "100vh" }}
+      style={{ width: "100vw", height: "100vh", opacity: 0.2 }}
     />
   );
 }
