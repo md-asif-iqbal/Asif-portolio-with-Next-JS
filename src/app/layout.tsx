@@ -4,6 +4,7 @@ import "./globals.css";
 import Background from "@/components/Background";
 import Spotlight from "@/components/Spotlight";
 import Socials from "@/components/Socials";
+import CustomCursor from "@/components/CustomCursor";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -38,6 +39,7 @@ export default function RootLayout({
         <Background />
         <Spotlight />
         <Socials />
+        <CustomCursor />
         {children}
       </body>
     </html>

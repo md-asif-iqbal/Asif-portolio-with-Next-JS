@@ -37,6 +37,10 @@ const skills = {
     items: ["Google Gemini AI", "OpenAI API", "REST APIs", "WebRTC", "Third-party Integrations"],
     color: "#8b5cf6",
   },
+  Other: {
+    items: ["Responsive Web Design", "Cross-browser Compatibility", "SDLC", "Agile (Scrum)", "Code Review", "Debugging"],
+    color: "#f59e0b",
+  },
 } as const;
 
 export default function Skills(): JSX.Element {

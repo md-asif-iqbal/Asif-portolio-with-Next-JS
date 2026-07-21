@@ -93,7 +93,8 @@ export default function Hero(): JSX.Element {
             className="mt-10 flex flex-wrap gap-4"
           >
             <motion.a
-              href="/Md_Asif_Iqbal_CV.pdf"
+              href="/Md_Asif_Iqbal_CV.html"
+              target="_blank"
               className="group relative inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 px-6 py-3 text-sm font-semibold text-white overflow-hidden"
               whileHover={{ scale: 1.03, boxShadow: "0 0 30px rgba(6,182,212,0.3)" }}
               whileTap={{ scale: 0.97 }}

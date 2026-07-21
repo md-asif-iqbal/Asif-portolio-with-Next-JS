@@ -9,22 +9,21 @@ type ExperienceItem = {
   role: string;
   location: string;
   period: string;
-  highlights: string[];
+  highlights: (string | React.ReactNode)[];
   color: string;
 };
 
 const experiences: ExperienceItem[] = [
   {
-    company: "NaasMind",
+    company: "Revinr",
     role: "Software Engineer",
     location: "Dhaka, Bangladesh",
     period: "Nov 2025 – Present",
     color: "#06b6d4",
     highlights: [
-      "Own end-to-end development of multiple SaaS products using Next.js, React, Node.js, and MongoDB, serving hundreds of active users.",
-      "Designed and shipped an AI-powered interview platform leveraging Google Gemini for resume parsing, question generation, and real-time candidate evaluation.",
-      "Architected an enterprise POS/ERP system with modules for billing, inventory, HR payroll, multi-branch reporting, and financial ledgers.",
-      "Implemented JWT authentication, Google OAuth, and granular RBAC; managed Vercel deployments with automated CI/CD, reducing release cycles by ~40%.",
+      "Developed and optimized the frontend architecture for Bridge to Bangladesh, a large-scale community engagement platform.",
+      "Built dynamic, responsive user interfaces, real-time notification systems, and interactive dashboards using Next.js, React.js, and Tailwind CSS.",
+      "Collaborated with backend teams to integrate REST APIs seamlessly, ensuring high-performance, accessible, and secure user experiences.",
     ],
   },
   {
@@ -34,10 +33,10 @@ const experiences: ExperienceItem[] = [
     period: "Jan 2025 – Oct 2025",
     color: "#10b981",
     highlights: [
-      "Shipped three full-stack applications from scratch, each optimized for performance, scalability, and data security.",
-      "Mentored two junior developers through code reviews, pair programming, and structured onboarding sessions.",
-      "Built reusable React components with Context API, cutting new-feature development time by about 25%.",
-      "Integrated REST APIs and third-party services (payment gateways, bulk SMS) into admin dashboards; improved MongoDB performance by 30% through indexing and caching.",
+      "Owned end-to-end development of multiple SaaS products, including an AI-powered interview platform leveraging Google Gemini and an enterprise POS/ERP system.",
+      "Built scalable architectures using Next.js, Node.js, and MongoDB; implemented JWT, Google OAuth, and granular RBAC.",
+      "Developed reusable React components and improved MongoDB performance by 30% via indexing and query caching.",
+      "Mentored junior developers through code reviews, and managed Vercel deployments with CI/CD pipelines and 80%+ test coverage.",
     ],
   },
   {

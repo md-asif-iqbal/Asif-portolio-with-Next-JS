@@ -48,6 +48,14 @@ const projects: Project[] = [
     tags: ["Next.js", "React", "Node.js", "Express", "MongoDB", "JWT"],
     color: "#06b6d4",
   },
+  {
+    title: "Event Planning & Management",
+    desc: "Full-stack event management tool with booking, payment, and attendee notifications.",
+    image: "/Edu-system.png",
+    href: "#",
+    tags: ["React", "Node.js", "Express", "MongoDB", "Firebase Auth", "Tailwind"],
+    color: "#f59e0b",
+  },
 ];
 
 export default function Projects(): JSX.Element {
