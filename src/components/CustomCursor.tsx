@@ -19,12 +19,12 @@ export default function CustomCursor() {
       SIM_RESOLUTION: 128,
       DYE_RESOLUTION: 1024,
       CAPTURE_RESOLUTION: 512,
-      DENSITY_DISSIPATION: 4.0, // Fades away very fast
+      DENSITY_DISSIPATION: 7.0, // Fades away extremely fast
       VELOCITY_DISSIPATION: 0.3,
       PRESSURE: 0.8,
       PRESSURE_ITERATIONS: 20,
       CURL: 30,
-      SPLAT_RADIUS: 0.08, // Very thin line
+      SPLAT_RADIUS: 0.04, // Extremely thin line
       SPLAT_FORCE: 6000,
       SHADING: true,
       COLORFUL: true,
@@ -106,7 +106,7 @@ export default function CustomCursor() {
     <canvas
       ref={canvasRef}
       className="fixed top-0 left-0 pointer-events-none z-[9998]"
-      style={{ width: "100vw", height: "100vh", opacity: 0.15, mixBlendMode: "screen" }}
+      style={{ width: "100vw", height: "100vh", opacity: 0.07, mixBlendMode: "screen" }}
     />
   );
 }
