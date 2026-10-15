@@ -3,6 +3,7 @@
 import { motion, useAnimation, useInView } from "framer-motion";
 import { PropsWithChildren, useEffect, useRef } from "react";
 import type { JSX } from "react";
+import AnimatedLine from "./AnimatedLine";
 
 type Props = PropsWithChildren<{
   id?: string;
@@ -40,7 +41,7 @@ export default function Section({ id, className, title, subtitle, children }: Pr
               <span className="text-[#00f2fe] drop-shadow-[0_0_20px_rgba(0,242,254,0.45)]">{title}</span>
             </h2>
           )}
-          <div className="mt-3 h-1 w-16 bg-[#00f2fe] rounded-full shadow-[0_0_12px_rgba(0,242,254,0.6)]" />
+          <AnimatedLine width="w-20 sm:w-28" />
         </motion.div>
       )}
       <motion.div

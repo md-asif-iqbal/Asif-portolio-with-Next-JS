@@ -41,7 +41,14 @@ export default function Hero(): JSX.Element {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mt-3 sm:mt-4 flex items-center gap-3"
           >
-            <div className="h-0.5 flex-1 max-w-[40px] bg-[#00f2fe] rounded-full shadow-[0_0_8px_rgba(0,242,254,0.5)]" />
+            <div className="relative h-1 flex-1 max-w-[50px] overflow-hidden rounded-full bg-cyan-500/20">
+              <div className="h-full w-full rounded-full bg-[#00f2fe] shadow-[0_0_10px_rgba(0,242,254,0.8)]" />
+              <motion.div
+                animate={{ x: ["-100%", "250%"] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", repeatDelay: 0.3 }}
+                className="absolute inset-y-0 w-2/3 bg-gradient-to-r from-transparent via-white to-transparent opacity-95 blur-[0.5px]"
+              />
+            </div>
             <motion.span
               className="text-base sm:text-xl text-cyan-300 font-semibold drop-shadow-[0_0_10px_rgba(103,232,249,0.3)]"
               animate={{ opacity: [0.85, 1, 0.85] }}

@@ -38,7 +38,7 @@ export default function Socials(): JSX.Element {
               href={href}
               target="_blank"
               rel="noreferrer"
-              className={`group grid h-11 w-11 place-items-center rounded-xl border border-white/10 bg-white/[0.04] backdrop-blur-md transition-all duration-300 ${hoverBg}`}
+              className={`group grid h-11 w-11 place-items-center rounded-xl border border-foreground/10 bg-background/80 backdrop-blur-md shadow-sm transition-all duration-300 ${hoverBg}`}
               aria-label={label}
               whileHover={{
                 scale: 1.15,
@@ -60,7 +60,7 @@ export default function Socials(): JSX.Element {
           initial={{ scaleY: 0 }}
           animate={{ scaleY: 1 }}
           transition={{ delay: 1.1, duration: 0.5 }}
-          className="w-px h-20 bg-gradient-to-b from-white/15 via-white/8 to-transparent origin-top"
+          className="w-px h-20 bg-gradient-to-b from-foreground/20 via-foreground/10 to-transparent origin-top"
         />
       </ul>
     </div>
