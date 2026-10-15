@@ -18,43 +18,27 @@ type Project = {
 
 const projects: Project[] = [
   {
-    title: "NexLearn",
-    desc: "AI-powered tutoring platform with 10,000+ students, live video sessions & Stripe payments.",
-    image: "/Edu-system.png",
-    href: "https://edu-platfrom-nex-learn.vercel.app",
-    tags: ["Next.js 16", "TypeScript", "MongoDB", "Gemini AI", "Stripe", "Jitsi"],
-    color: "#8b5cf6",
-  },
-  {
-    title: "SoftLanding Interview",
-    desc: "End-to-end AI hiring platform with resume parsing, proctored video interviews & smart scoring.",
+    title: "AI-Based Interview System",
+    desc: "AI hiring platform with Gemini resume parsing, smart scoring & anti-cheat proctored video interviews.",
     image: "/ai-based.png",
     href: "https://ai-based-interview-systems.vercel.app",
-    tags: ["Next.js", "TypeScript", "Gemini AI", "WebRTC", "MongoDB"],
+    tags: ["Next.js", "Gemini AI", "WebRTC", "Node.js", "MongoDB"],
     color: "#10b981",
   },
   {
-    title: "CineWave",
-    desc: "Netflix-style streaming app with cinematic banners, trending carousels & admin panel.",
-    image: "/cinewave-striming-platfrom.png",
-    href: "https://cinewave-movie-platform-bixw.vercel.app",
-    tags: ["Next.js", "Node.js", "MongoDB", "Payment Gateway"],
-    color: "#ef4444",
-  },
-  {
-    title: "SoftLanding POS V2",
-    desc: "Enterprise POS & ERP dashboard tracking $385K+ sales, 5,870+ invoices & real-time analytics.",
-    image: "/pos.png",
-    href: "https://soft-landing-pos-system-v2.vercel.app",
-    tags: ["Next.js", "React", "Node.js", "Express", "MongoDB", "JWT"],
+    title: "Bridge to Bangladesh",
+    desc: "Global diaspora platform connecting overseas Bangladeshis with national development initiatives & community circles.",
+    image: "/bridge-to-bd.jpeg",
+    href: "https://bridgetobd.org/",
+    tags: ["Next.js", "React.js", "Tailwind CSS", "TypeScript", "REST APIs"],
     color: "#06b6d4",
   },
   {
-    title: "Event Planning & Management",
-    desc: "Full-stack event management tool with booking, payment, and attendee notifications.",
-    image: "/Edu-system.png",
-    href: "#",
-    tags: ["React", "Node.js", "Express", "MongoDB", "Firebase Auth", "Tailwind"],
+    title: "BD Shoes — E-Commerce",
+    desc: "Full-stack footwear e-commerce platform with real-time inventory, dynamic category filtering & checkout.",
+    image: "/bd-shoes.jpg",
+    href: "https://bdshoe.com",
+    tags: ["Next.js 16", "React 19", "TypeScript", "Zustand", "Tailwind CSS"],
     color: "#f59e0b",
   },
 ];
@@ -62,7 +46,7 @@ const projects: Project[] = [
 export default function Projects(): JSX.Element {
   return (
     <Section id="projects" title="Featured Projects" subtitle="Work">
-      <div className="grid gap-5 sm:gap-6 sm:grid-cols-2">
+      <div className="grid gap-5 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {projects.map((p, i) => (
           <motion.div
             key={p.title}
@@ -70,7 +54,7 @@ export default function Projects(): JSX.Element {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.5, delay: i * 0.08 }}
-            className="h-full"
+            className={`h-full ${i === 2 ? "sm:col-span-2 lg:col-span-1 sm:max-w-md sm:mx-auto lg:max-w-none w-full" : ""}`}
           >
             <TiltCard tiltDegree={7} glareOpacity={0.22} scale={1.02} className="h-full">
               <div
@@ -89,7 +73,7 @@ export default function Projects(): JSX.Element {
                     priority={i < 2}
                     quality={90}
                     className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.06]"
-                    sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 550px"
+                    sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 33vw"
                   />
 
                   {/* Subtle bottom gradient only */}
@@ -103,19 +87,18 @@ export default function Projects(): JSX.Element {
                     }}
                   />
 
-                  {/* Curved reveal overlay — slides up on hover */}
+                  {/* Curved reveal overlay — hidden by default, slides up on hover */}
                   <div
-                    className="absolute inset-x-0 -bottom-1 transition-all duration-500 ease-out group-hover:translate-y-0 translate-y-[calc(100%-1px)] z-20"
+                    className="absolute inset-x-0 bottom-0 transition-transform duration-500 ease-out translate-y-full group-hover:translate-y-0 z-20 pointer-events-none group-hover:pointer-events-auto"
                     style={{
-                      height: "60%",
-                      background: "rgba(10,10,15,0.92)",
+                      height: "64%",
+                      background: "rgba(10,10,15,0.94)",
                       backdropFilter: "blur(12px)",
-                      borderRadius: "40% 40% 0 0",
-                      clipPath: "ellipse(75% 100% at 50% 100%)",
-                      transform: "translateZ(30px)",
+                      borderRadius: "45% 45% 0 0",
+                      clipPath: "ellipse(80% 100% at 50% 100%)",
                     }}
                   >
-                    <div className="flex flex-col items-center justify-center h-full px-4 sm:px-6 pt-5 sm:pt-6 pb-3 sm:pb-4 gap-2.5 sm:gap-3">
+                    <div className="flex flex-col items-center justify-center h-full px-4 sm:px-6 pt-5 sm:pt-6 pb-3 sm:pb-4 gap-2 sm:gap-2.5">
                       {/* Tags */}
                       <div className="flex flex-wrap justify-center gap-1 sm:gap-1.5 max-w-full">
                         {p.tags.map((t) => (
@@ -123,9 +106,9 @@ export default function Projects(): JSX.Element {
                             key={t}
                             className="rounded-full px-2 sm:px-2.5 py-0.5 text-[9px] sm:text-[10px] font-medium border whitespace-nowrap shadow-sm"
                             style={{
-                              borderColor: `${p.color}25`,
-                              backgroundColor: `${p.color}10`,
-                              color: `${p.color}cc`,
+                              borderColor: `${p.color}30`,
+                              backgroundColor: `${p.color}15`,
+                              color: `${p.color}`,
                             }}
                           >
                             {t}
@@ -141,7 +124,6 @@ export default function Projects(): JSX.Element {
                         className="flex items-center gap-1.5 rounded-full px-4 sm:px-5 py-1.5 sm:py-2 text-xs font-semibold text-white transition-all duration-300 hover:brightness-110 hover:scale-105 shadow-[0_4px_15px_rgba(0,0,0,0.4)]"
                         style={{
                           backgroundColor: p.color,
-                          transform: "translateZ(35px)",
                         }}
                         onClick={(e) => e.stopPropagation()}
                       >
@@ -152,7 +134,7 @@ export default function Projects(): JSX.Element {
                   </div>
                 </div>
 
-                {/* Bottom info — always visible with 3D Pop */}
+                {/* Bottom info — always visible */}
                 <div
                   className="relative px-3.5 sm:px-4 py-3 sm:py-3.5 bg-[#0c0c14]/90 backdrop-blur-md"
                   style={{ transform: "translateZ(20px)" }}
