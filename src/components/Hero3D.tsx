@@ -184,7 +184,7 @@ export default function Hero3D(): JSX.Element {
           {/* Badge 1: Next.js */}
           <motion.div
             style={{ transform: "translateZ(50px)" }}
-            className="absolute -top-4 -right-4 px-3 py-1.5 rounded-xl bg-[#0e0e1a]/90 border border-cyan-500/40 shadow-[0_10px_30px_rgba(6,182,212,0.25)] backdrop-blur-md flex items-center gap-1.5 text-xs font-semibold text-cyan-300"
+            className="absolute -top-4 -right-4 px-3 py-1.5 rounded-xl bg-[#0e0e1a]/90 border border-cyan-500/40 shadow-[0_10px_30px_rgba(6,182,212,0.25)] backdrop-blur-md flex items-center gap-2 text-xs font-semibold text-cyan-300"
             animate={{
               y: [0, -6, 0],
             }}
@@ -194,14 +194,14 @@ export default function Hero3D(): JSX.Element {
               ease: "easeInOut",
             }}
           >
-            <span className="text-sm">▲</span>
+            <span className="w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_8px_#06b6d4]" />
             <span>Next.js 15</span>
           </motion.div>
 
           {/* Badge 2: TypeScript */}
           <motion.div
             style={{ transform: "translateZ(55px)" }}
-            className="absolute -bottom-4 -left-4 px-3 py-1.5 rounded-xl bg-[#0e0e1a]/90 border border-blue-500/40 shadow-[0_10px_30px_rgba(59,130,246,0.25)] backdrop-blur-md flex items-center gap-1.5 text-xs font-semibold text-blue-300"
+            className="absolute -bottom-4 -left-4 px-3 py-1.5 rounded-xl bg-[#0e0e1a]/90 border border-blue-500/40 shadow-[0_10px_30px_rgba(59,130,246,0.25)] backdrop-blur-md flex items-center gap-2 text-xs font-semibold text-blue-300"
             animate={{
               y: [0, 6, 0],
             }}
@@ -212,14 +212,14 @@ export default function Hero3D(): JSX.Element {
               delay: 0.5,
             }}
           >
-            <span className="text-sm">🔷</span>
+            <span className="px-1 py-0.5 rounded bg-blue-600 text-[9px] font-extrabold text-white leading-none">TS</span>
             <span>TypeScript</span>
           </motion.div>
 
           {/* Badge 3: React Fullstack */}
           <motion.div
             style={{ transform: "translateZ(45px)" }}
-            className="absolute top-1/2 -right-6 px-3 py-1 rounded-xl bg-[#0e0e1a]/90 border border-emerald-500/40 shadow-[0_10px_25px_rgba(16,185,129,0.25)] backdrop-blur-md flex items-center gap-1.5 text-xs font-semibold text-emerald-300"
+            className="absolute top-1/2 -right-6 px-3 py-1 rounded-xl bg-[#0e0e1a]/90 border border-emerald-500/40 shadow-[0_10px_25px_rgba(16,185,129,0.25)] backdrop-blur-md flex items-center gap-2 text-xs font-semibold text-emerald-300"
             animate={{
               y: [0, -5, 0],
             }}
@@ -230,7 +230,7 @@ export default function Hero3D(): JSX.Element {
               delay: 1,
             }}
           >
-            <span className="text-sm">⚛️</span>
+            <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_#10b981]" />
             <span>React.js</span>
           </motion.div>
         </div>

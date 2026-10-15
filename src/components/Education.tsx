@@ -3,6 +3,7 @@
 import Section from "./Section";
 import type { JSX } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 type EducationItem = {
   institute: string;
@@ -19,7 +20,7 @@ const education: EducationItem[] = [
     degree: "B.Sc. in Software Engineering",
     period: "2019 – 2024",
     details: "Major: Software Engineering",
-    icon: "🎓",
+    icon: "/gifs/grad_cap.gif",
     color: "#06b6d4",
   },
   {
@@ -27,7 +28,7 @@ const education: EducationItem[] = [
     degree: "Higher Secondary Certificate (HSC) — Science",
     period: "2017 – 2019",
     details: "GPA: 5.00 / 5.00",
-    icon: "📚",
+    icon: "/gifs/books.gif",
     color: "#10b981",
   },
 ];
@@ -58,13 +59,20 @@ export default function Education(): JSX.Element {
 
             <div className="flex items-start gap-3 sm:gap-4">
               <motion.div
-                className="text-2xl sm:text-3xl flex-shrink-0 mt-0.5"
+                className="w-10 h-10 sm:w-12 sm:h-12 relative flex-shrink-0 mt-0.5"
                 initial={{ scale: 0 }}
                 whileInView={{ scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.15 + 0.2, type: "spring", stiffness: 300 }}
               >
-                {e.icon}
+                <Image
+                  src={e.icon}
+                  alt={e.degree}
+                  width={48}
+                  height={48}
+                  className="object-contain"
+                  unoptimized
+                />
               </motion.div>
 
               <div className="min-w-0 flex-1">

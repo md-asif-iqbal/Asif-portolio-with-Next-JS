@@ -31,16 +31,16 @@ export default function Section({ id, className, title, subtitle, children }: Pr
           className="mb-8 sm:mb-12"
         >
           {subtitle && (
-            <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-cyan-400/70 mb-2">
+            <span className="inline-block text-xs font-bold uppercase tracking-[0.25em] text-cyan-400 mb-2">
               {subtitle}
             </span>
           )}
           {title && (
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight">
-              <span className="gradient-text">{title}</span>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight">
+              <span className="text-[#00f2fe] drop-shadow-[0_0_20px_rgba(0,242,254,0.45)]">{title}</span>
             </h2>
           )}
-          <div className="mt-3 h-px w-16 bg-gradient-to-r from-cyan-500/60 to-transparent" />
+          <div className="mt-3 h-1 w-16 bg-[#00f2fe] rounded-full shadow-[0_0_12px_rgba(0,242,254,0.6)]" />
         </motion.div>
       )}
       <motion.div

@@ -64,8 +64,8 @@ export default function Header(): JSX.Element {
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="flex h-16 items-center justify-between">
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Link href="#top" className="text-lg font-bold tracking-tight gradient-text">
-              Asif<span className="text-foreground/80">.</span>
+            <Link href="#top" className="text-lg font-bold tracking-tight text-[#00f2fe] drop-shadow-[0_0_12px_rgba(0,242,254,0.4)]">
+              Asif<span className="text-white">.</span>
             </Link>
           </motion.div>
 

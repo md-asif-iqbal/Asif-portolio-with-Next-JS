@@ -32,7 +32,7 @@ export default function Hero(): JSX.Element {
             className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.15] break-words"
           >
             <span className="text-foreground">Hi, I&apos;m </span>
-            <span className="gradient-text">Asif Iqbal</span>
+            <span className="text-[#00f2fe] font-extrabold drop-shadow-[0_0_24px_rgba(0,242,254,0.45)]">Asif Iqbal</span>
           </motion.h1>
 
           <motion.div
@@ -41,10 +41,10 @@ export default function Hero(): JSX.Element {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mt-3 sm:mt-4 flex items-center gap-3"
           >
-            <div className="h-px flex-1 max-w-[40px] bg-gradient-to-r from-cyan-500/60 to-transparent" />
+            <div className="h-0.5 flex-1 max-w-[40px] bg-[#00f2fe] rounded-full shadow-[0_0_8px_rgba(0,242,254,0.5)]" />
             <motion.span
-              className="text-base sm:text-xl text-cyan-400/90 font-medium"
-              animate={{ opacity: [0.7, 1, 0.7] }}
+              className="text-base sm:text-xl text-cyan-300 font-semibold drop-shadow-[0_0_10px_rgba(103,232,249,0.3)]"
+              animate={{ opacity: [0.85, 1, 0.85] }}
               transition={{ duration: 3, repeat: Infinity }}
             >
               {roles[0]}
@@ -79,8 +79,8 @@ export default function Hero(): JSX.Element {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.5 + i * 0.1, type: "spring" }}
               >
-                <div className="text-xl sm:text-2xl font-bold gradient-text">{stat.value}</div>
-                <div className="text-xs text-foreground/40 mt-0.5">{stat.label}</div>
+                <div className="text-xl sm:text-2xl font-extrabold text-[#00f2fe] drop-shadow-[0_0_12px_rgba(0,242,254,0.35)]">{stat.value}</div>
+                <div className="text-xs text-foreground/50 mt-0.5 font-medium">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>

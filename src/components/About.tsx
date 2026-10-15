@@ -3,12 +3,13 @@
 import Section from "./Section";
 import type { JSX } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const highlights = [
-  { icon: "🚀", label: "2+ Years Experience", desc: "Building production apps" },
-  { icon: "💼", label: "SaaS & Enterprise", desc: "POS, ERP, AI platforms" },
-  { icon: "⚡", label: "Performance First", desc: "35% faster load times" },
-  { icon: "🔐", label: "Security Focused", desc: "JWT, OAuth, RBAC" },
+  { icon: "/gifs/rocket.gif", label: "2+ Years Experience", desc: "Building production apps" },
+  { icon: "/gifs/briefcase.gif", label: "SaaS & Enterprise", desc: "POS, ERP, AI platforms" },
+  { icon: "/gifs/lightning.gif", label: "Performance First", desc: "35% faster load times" },
+  { icon: "/gifs/lock.gif", label: "Security Focused", desc: "JWT, OAuth, RBAC" },
 ];
 
 export default function About(): JSX.Element {
@@ -70,7 +71,16 @@ export default function About(): JSX.Element {
               }}
               className="glass-card rounded-xl p-3 sm:p-4 flex flex-col items-center justify-center text-center cursor-default min-h-[110px]"
             >
-              <span className="text-xl sm:text-2xl mb-1.5">{item.icon}</span>
+              <div className="w-8 h-8 sm:w-9 sm:h-9 relative mb-1.5 flex items-center justify-center">
+                <Image
+                  src={item.icon}
+                  alt={item.label}
+                  width={36}
+                  height={36}
+                  className="object-contain"
+                  unoptimized
+                />
+              </div>
               <span className="text-xs sm:text-sm font-semibold text-foreground/90 leading-tight">{item.label}</span>
               <span className="text-[11px] sm:text-xs text-foreground/40 mt-1 leading-snug">{item.desc}</span>
             </motion.div>

@@ -20,7 +20,7 @@ const projects: Project[] = [
   {
     title: "AI-Based Interview System",
     desc: "AI hiring platform with Gemini resume parsing, smart scoring & anti-cheat proctored video interviews.",
-    image: "/ai-based.png",
+    image: "/ai-interview-showcase.png",
     href: "https://ai-based-interview-systems.vercel.app",
     tags: ["Next.js", "Gemini AI", "WebRTC", "Node.js", "MongoDB"],
     color: "#10b981",
@@ -28,7 +28,7 @@ const projects: Project[] = [
   {
     title: "Bridge to Bangladesh",
     desc: "Global diaspora platform connecting overseas Bangladeshis with national development initiatives & community circles.",
-    image: "/bridge-to-bd.jpeg",
+    image: "/bridge-to-bd-showcase.png",
     href: "https://bridgetobd.org/",
     tags: ["Next.js", "React.js", "Tailwind CSS", "TypeScript", "REST APIs"],
     color: "#06b6d4",
@@ -36,7 +36,7 @@ const projects: Project[] = [
   {
     title: "BD Shoes — E-Commerce",
     desc: "Full-stack footwear e-commerce platform with real-time inventory, dynamic category filtering & checkout.",
-    image: "/bd-shoes.jpg",
+    image: "/bd-shoes-showcase.png",
     href: "https://bdshoe.com",
     tags: ["Next.js 16", "React 19", "TypeScript", "Zustand", "Tailwind CSS"],
     color: "#f59e0b",
@@ -65,14 +65,14 @@ export default function Projects(): JSX.Element {
                 }}
               >
                 {/* Image */}
-                <div className="relative aspect-[16/10] overflow-hidden bg-[#0d0d14]">
+                <div className="relative aspect-[16/9] overflow-hidden bg-[#0d0d14]">
                   <Image
                     src={p.image}
                     alt={p.title}
                     fill
                     priority={i < 2}
                     quality={90}
-                    className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.06]"
+                    className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.05]"
                     sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 33vw"
                   />
 

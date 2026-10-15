@@ -20,7 +20,7 @@ const achievements: Achievement[] = [
     title: "HackerRank – JavaScript (Intermediate)",
     description: "Advanced JS concepts and problem-solving proficiency demonstrated.",
     image: "/javascript.png",
-    icon: "💻",
+    icon: "/gifs/laptop.gif",
     year: "2024",
     verificationLink: "https://www.hackerrank.com/certificates/iframe/9c8b39c8ec09",
     color: "#f59e0b",
@@ -29,7 +29,7 @@ const achievements: Achievement[] = [
     title: "HackerRank – Problem Solving (Basic)",
     description: "Strong algorithms and logical reasoning skills validated.",
     image: "/software.png",
-    icon: "🧩",
+    icon: "/gifs/puzzle.gif",
     year: "2024",
     verificationLink: "https://www.hackerrank.com/certificates/iframe/805e27d2e65e",
     color: "#10b981",
@@ -38,7 +38,7 @@ const achievements: Achievement[] = [
     title: "UIU CSE Project Show – 1st Runner-up",
     description: "Presented innovative software engineering project at university-level competition, 2023.",
     image: "/cse.png",
-    icon: "🏆",
+    icon: "/gifs/trophy.gif",
     year: "2023",
     verificationLink: "https://drive.google.com/file/d/1GzfSj-jrAhndTK5fpfx1AY-rx-Sv-BO4/view",
     color: "#8b5cf6",
@@ -84,8 +84,15 @@ export default function Achievements(): JSX.Element {
                   />
                 </>
               ) : (
-                <div className="absolute inset-0 flex items-center justify-center text-4xl sm:text-5xl opacity-40">
-                  {achievement.icon}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <Image
+                    src={achievement.icon}
+                    alt={achievement.title}
+                    width={48}
+                    height={48}
+                    className="object-contain"
+                    unoptimized
+                  />
                 </div>
               )}
 
@@ -106,9 +113,21 @@ export default function Achievements(): JSX.Element {
 
             {/* Content */}
             <div className="p-4 sm:p-5">
-              <h3 className="font-bold text-sm tracking-tight text-foreground/90 group-hover:text-foreground transition-colors leading-snug break-words">
-                {achievement.title}
-              </h3>
+              <div className="flex items-center gap-2 mb-1">
+                <div className="w-5 h-5 relative flex-shrink-0">
+                  <Image
+                    src={achievement.icon}
+                    alt={achievement.title}
+                    width={20}
+                    height={20}
+                    className="object-contain"
+                    unoptimized
+                  />
+                </div>
+                <h3 className="font-bold text-sm tracking-tight text-foreground/90 group-hover:text-foreground transition-colors leading-snug break-words">
+                  {achievement.title}
+                </h3>
+              </div>
               <p className="text-xs text-foreground/40 mt-1.5 leading-relaxed">
                 {achievement.description}
               </p>
