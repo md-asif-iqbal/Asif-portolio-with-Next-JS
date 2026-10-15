@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import type { JSX } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import ThemeToggle from "./ThemeToggle";
 
 const links = [
   { href: "#top", label: "Home" },
@@ -98,7 +97,6 @@ export default function Header(): JSX.Element {
           </nav>
 
           <div className="flex items-center gap-2 sm:gap-3">
-            <ThemeToggle />
 
             <motion.a
               href="#contact"
@@ -163,10 +161,7 @@ export default function Header(): JSX.Element {
                   {l.label}
                 </motion.a>
               ))}
-              <div className="flex items-center justify-between py-2 px-3 my-1 rounded-lg bg-foreground/[0.04] border border-foreground/[0.06]">
-                <span className="text-xs font-semibold text-foreground/70">Theme</span>
-                <ThemeToggle />
-              </div>
+
               <motion.a
                 href="#contact"
                 className="mt-2 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 px-4 py-2.5 text-sm font-semibold text-white text-center"

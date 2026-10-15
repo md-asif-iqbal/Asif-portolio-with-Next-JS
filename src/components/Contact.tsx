@@ -12,7 +12,7 @@ const contactInfo = [
   { icon: <Mail className="w-4 h-4" />, label: "md.asifiqbal2008@gmail.com", href: "mailto:md.asifiqbal2008@gmail.com", color: "#06b6d4" },
   { icon: <MapPin className="w-4 h-4" />, label: "Badda, Dhaka, Bangladesh", href: "#", color: "#8b5cf6" },
   { icon: <Linkedin className="w-4 h-4" />, label: "LinkedIn", href: "https://linkedin.com/in/md-asif-iqbal-652473185/", color: "#0077b5" },
-  { icon: <Github className="w-4 h-4" />, label: "GitHub", href: "https://github.com/md-asif-iqbal", color: "#64748b" },
+  { icon: <Github className="w-4 h-4" />, label: "GitHub", href: "https://github.com/md-asif-iqbal", color: "#e8e8ef" },
 ];
 
 export default function Contact(): JSX.Element {
