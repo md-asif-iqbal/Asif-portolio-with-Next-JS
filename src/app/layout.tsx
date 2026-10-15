@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Background from "@/components/Background";
@@ -11,6 +11,12 @@ const inter = Inter({
   weight: ["300", "400", "500", "600", "700", "800"],
   display: "swap",
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
 
 export const metadata: Metadata = {
   title: "Md. Asif Iqbal – Software Engineer",
@@ -35,7 +41,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`dark ${inter.className}`}>
-      <body className="antialiased noise">
+      <body className="antialiased noise overflow-x-hidden min-h-screen relative w-full">
         <Background />
         <Spotlight />
         <Socials />

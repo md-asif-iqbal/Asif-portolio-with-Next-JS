@@ -69,12 +69,12 @@ export default function Header(): JSX.Element {
             </Link>
           </motion.div>
 
-          <nav className="hidden gap-1 text-sm lg:flex">
+          <nav className="hidden items-center lg:flex lg:gap-0.5 xl:gap-1 text-xs xl:text-sm">
             {links.map((l, idx) => (
               <motion.a
                 key={l.href}
                 href={l.href}
-                className={`relative px-3 py-1.5 rounded-lg text-sm transition-colors duration-200 ${
+                className={`relative px-2 xl:px-3 py-1.5 rounded-lg transition-colors duration-200 whitespace-nowrap ${
                   activeSection === l.href
                     ? "text-cyan-400"
                     : "text-foreground/50 hover:text-foreground/80"
@@ -99,7 +99,7 @@ export default function Header(): JSX.Element {
           <div className="flex items-center gap-3">
             <motion.a
               href="#contact"
-              className="hidden sm:inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500/10 to-emerald-500/10 border border-cyan-500/20 px-4 py-2 text-sm font-medium text-cyan-400 hover:from-cyan-500/20 hover:to-emerald-500/20 transition-all duration-300"
+              className="hidden sm:inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500/10 to-emerald-500/10 border border-cyan-500/20 px-3.5 xl:px-4 py-2 text-xs xl:text-sm font-medium text-cyan-400 hover:from-cyan-500/20 hover:to-emerald-500/20 transition-all duration-300"
               whileHover={{ scale: 1.03, boxShadow: "0 0 20px rgba(6,182,212,0.15)" }}
               whileTap={{ scale: 0.97 }}
             >
@@ -108,7 +108,7 @@ export default function Header(): JSX.Element {
             </motion.a>
             <motion.button
               aria-label="Toggle menu"
-              className="lg:hidden rounded-lg border border-white/10 p-2 hover:bg-white/5 transition-colors"
+              className="lg:hidden rounded-lg border border-white/10 p-2.5 min-w-[42px] min-h-[42px] flex flex-col justify-center items-center hover:bg-white/5 transition-colors"
               onClick={() => setOpen((v) => !v)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -142,7 +142,7 @@ export default function Header(): JSX.Element {
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
           >
-            <div className="mx-auto max-w-6xl px-4 py-4 flex flex-col gap-1">
+            <div className="mx-auto max-w-6xl px-4 py-4 flex flex-col gap-1 max-h-[calc(100dvh-4.5rem)] overflow-y-auto">
               {links.map((l, idx) => (
                 <motion.a
                   key={l.href}

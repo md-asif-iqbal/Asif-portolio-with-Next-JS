@@ -14,30 +14,30 @@ const highlights = [
 export default function About(): JSX.Element {
   return (
     <Section id="about" title="About Me" subtitle="Introduction">
-      <div className="grid gap-8 lg:grid-cols-5">
+      <div className="grid gap-6 lg:gap-8 lg:grid-cols-5">
         {/* Main description */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="lg:col-span-3 glass-card rounded-2xl p-8"
+          className="lg:col-span-3 glass-card rounded-2xl p-4 sm:p-6 md:p-8"
         >
-          <p className="text-foreground/70 leading-relaxed text-[15px]">
+          <p className="text-foreground/70 leading-relaxed text-sm sm:text-[15px]">
             Software Engineer with 2+ years of experience building production-grade web applications 
             using the <span className="text-cyan-400 font-medium">MERN stack</span>,{" "}
             <span className="text-emerald-400 font-medium">Next.js</span>, and{" "}
             <span className="text-violet-400 font-medium">TypeScript</span>. 
             Skilled in developing AI-driven SaaS products, enterprise POS/ERP systems, and streaming platforms.
           </p>
-          <p className="mt-4 text-foreground/70 leading-relaxed text-[15px]">
+          <p className="mt-4 text-foreground/70 leading-relaxed text-sm sm:text-[15px]">
             Focused on writing clean code, building secure REST APIs, responsive design, and 
             cross-browser compatibility. Comfortable working in Agile teams with CI/CD workflows 
             and thorough code reviews.
           </p>
 
           {/* Tech stack pills */}
-          <div className="mt-6 flex flex-wrap gap-2">
+          <div className="mt-5 sm:mt-6 flex flex-wrap gap-1.5 sm:gap-2">
             {["React", "Next.js", "TypeScript", "Node.js", "Express.js", "MongoDB", "PostgreSQL", "Tailwind CSS", "JWT", "Docker"].map((tech, i) => (
               <motion.span
                 key={tech}
@@ -46,7 +46,7 @@ export default function About(): JSX.Element {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05, type: "spring", stiffness: 300 }}
                 whileHover={{ scale: 1.08, y: -2 }}
-                className="tag cursor-default"
+                className="tag text-xs px-2.5 py-1 cursor-default"
               >
                 {tech}
               </motion.span>
@@ -55,7 +55,7 @@ export default function About(): JSX.Element {
         </motion.div>
 
         {/* Highlight cards */}
-        <div className="lg:col-span-2 grid grid-cols-2 gap-3">
+        <div className="lg:col-span-2 grid grid-cols-2 gap-2.5 sm:gap-3">
           {highlights.map((item, idx) => (
             <motion.div
               key={item.label}
@@ -68,11 +68,11 @@ export default function About(): JSX.Element {
                 borderColor: "rgba(6, 182, 212, 0.3)",
                 boxShadow: "0 8px 30px rgba(6, 182, 212, 0.1)",
               }}
-              className="glass-card rounded-xl p-4 flex flex-col items-center text-center cursor-default"
+              className="glass-card rounded-xl p-3 sm:p-4 flex flex-col items-center justify-center text-center cursor-default min-h-[110px]"
             >
-              <span className="text-2xl mb-2">{item.icon}</span>
-              <span className="text-sm font-semibold text-foreground/90">{item.label}</span>
-              <span className="text-xs text-foreground/40 mt-1">{item.desc}</span>
+              <span className="text-xl sm:text-2xl mb-1.5">{item.icon}</span>
+              <span className="text-xs sm:text-sm font-semibold text-foreground/90 leading-tight">{item.label}</span>
+              <span className="text-[11px] sm:text-xs text-foreground/40 mt-1 leading-snug">{item.desc}</span>
             </motion.div>
           ))}
         </div>

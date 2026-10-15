@@ -35,7 +35,7 @@ const education: EducationItem[] = [
 export default function Education(): JSX.Element {
   return (
     <Section id="education" title="Education" subtitle="Academic">
-      <div className="grid gap-6 sm:grid-cols-2">
+      <div className="grid gap-4 sm:gap-6 sm:grid-cols-2">
         {education.map((e, idx) => (
           <motion.div
             key={e.institute}
@@ -48,7 +48,7 @@ export default function Education(): JSX.Element {
               borderColor: `${e.color}25`,
               boxShadow: `0 16px 40px ${e.color}10`,
             }}
-            className="glass-card rounded-2xl p-6 group relative overflow-hidden"
+            className="glass-card rounded-2xl p-4 sm:p-6 group relative overflow-hidden"
           >
             {/* Accent top bar */}
             <div
@@ -56,9 +56,9 @@ export default function Education(): JSX.Element {
               style={{ background: `linear-gradient(to right, ${e.color}, transparent)` }}
             />
 
-            <div className="flex items-start gap-4">
+            <div className="flex items-start gap-3 sm:gap-4">
               <motion.div
-                className="text-3xl flex-shrink-0"
+                className="text-2xl sm:text-3xl flex-shrink-0 mt-0.5"
                 initial={{ scale: 0 }}
                 whileInView={{ scale: 1 }}
                 viewport={{ once: true }}
@@ -67,18 +67,18 @@ export default function Education(): JSX.Element {
                 {e.icon}
               </motion.div>
 
-              <div>
-                <h3 className="font-bold text-base tracking-tight text-foreground/90 group-hover:text-foreground transition-colors">
+              <div className="min-w-0 flex-1">
+                <h3 className="font-bold text-sm sm:text-base tracking-tight text-foreground/90 group-hover:text-foreground transition-colors leading-snug">
                   {e.degree}
                 </h3>
-                <p className="text-sm text-foreground/50 mt-1">{e.institute}</p>
-                <div className="flex items-center gap-3 mt-3">
-                  <span className="text-xs font-medium text-foreground/30 bg-white/5 px-3 py-1 rounded-full border border-white/5">
+                <p className="text-xs sm:text-sm text-foreground/50 mt-1 leading-relaxed">{e.institute}</p>
+                <div className="flex flex-wrap items-center gap-2 sm:gap-3 mt-3">
+                  <span className="text-xs font-medium text-foreground/40 bg-white/5 px-2.5 sm:px-3 py-1 rounded-full border border-white/5 whitespace-nowrap">
                     {e.period}
                   </span>
                   {e.details && (
                     <span
-                      className="text-xs font-medium px-3 py-1 rounded-full border"
+                      className="text-xs font-medium px-2.5 sm:px-3 py-1 rounded-full border whitespace-nowrap"
                       style={{
                         color: e.color,
                         borderColor: `${e.color}25`,

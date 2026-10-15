@@ -46,7 +46,7 @@ const skills = {
 export default function Skills(): JSX.Element {
   return (
     <Section id="skills" title="Technical Skills" subtitle="Core Stack">
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-3.5 sm:gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {Object.entries(skills).map(([group, { items, color }], idx) => (
           <motion.div
             key={group}
@@ -59,7 +59,7 @@ export default function Skills(): JSX.Element {
               boxShadow: `0 12px 30px ${color}15`,
               borderColor: `${color}30`,
             }}
-            className="glass-card rounded-xl p-5 group"
+            className="glass-card rounded-xl p-4 sm:p-5 group"
           >
             <div className="flex items-center gap-2 mb-3">
               <div
@@ -72,7 +72,7 @@ export default function Skills(): JSX.Element {
               {items.map((s, skillIdx) => (
                 <motion.span
                   key={s}
-                  className="rounded-lg border border-white/[0.06] bg-white/[0.03] px-2.5 py-1 text-xs text-foreground/60 cursor-default transition-all duration-300 hover:text-foreground/90"
+                  className="rounded-lg border border-white/[0.06] bg-white/[0.03] px-2 sm:px-2.5 py-1 text-[11px] sm:text-xs text-foreground/60 cursor-default transition-all duration-300 hover:text-foreground/90"
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}

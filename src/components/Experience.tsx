@@ -60,7 +60,7 @@ export default function Experience(): JSX.Element {
       <div className="relative">
         {/* Timeline line */}
         <motion.div
-          className="absolute left-[19px] top-0 bottom-0 w-px"
+          className="absolute left-[9px] sm:left-[19px] top-0 bottom-0 w-px"
           style={{
             background: "linear-gradient(to bottom, rgba(6,182,212,0.4), rgba(16,185,129,0.3), rgba(139,92,246,0.3), transparent)",
           }}
@@ -70,7 +70,7 @@ export default function Experience(): JSX.Element {
           transition={{ duration: 1.2, ease: "easeOut" }}
         />
 
-        <ul className="space-y-8">
+        <ul className="space-y-6 sm:space-y-8">
           {experiences.map((exp, idx) => (
             <motion.li
               key={exp.company}
@@ -78,11 +78,11 @@ export default function Experience(): JSX.Element {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.15 }}
-              className="relative pl-14"
+              className="relative pl-7 sm:pl-14"
             >
               {/* Timeline dot */}
               <motion.div
-                className="absolute left-[12px] top-6 w-[15px] h-[15px] rounded-full border-2"
+                className="absolute left-[3px] sm:left-[12px] top-6 w-3.5 h-3.5 sm:w-[15px] sm:h-[15px] rounded-full border-2"
                 style={{
                   borderColor: exp.color,
                   backgroundColor: `${exp.color}20`,
@@ -95,41 +95,41 @@ export default function Experience(): JSX.Element {
               />
 
               <motion.div
-                className="glass-card rounded-2xl p-6 group"
+                className="glass-card rounded-2xl p-4 sm:p-6 group"
                 whileHover={{
                   borderColor: `${exp.color}25`,
                   boxShadow: `0 12px 40px ${exp.color}10`,
                 }}
               >
-                <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2">
+                <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1.5 sm:gap-2">
                   <div>
-                    <h3 className="font-bold text-lg tracking-tight" style={{ color: exp.color }}>
+                    <h3 className="font-bold text-base sm:text-lg tracking-tight" style={{ color: exp.color }}>
                       {exp.role}
                     </h3>
-                    <p className="text-sm text-foreground/50 mt-0.5">
+                    <p className="text-xs sm:text-sm text-foreground/50 mt-0.5">
                       {exp.company} • {exp.location}
                     </p>
                   </div>
-                  <span className="text-xs font-medium text-foreground/30 bg-white/5 px-3 py-1 rounded-full border border-white/5 whitespace-nowrap">
+                  <span className="text-xs font-medium text-foreground/40 bg-white/5 px-2.5 sm:px-3 py-1 rounded-full border border-white/5 self-start sm:self-auto whitespace-nowrap">
                     {exp.period}
                   </span>
                 </div>
 
-                <ul className="mt-4 space-y-2">
+                <ul className="mt-3.5 sm:mt-4 space-y-2">
                   {exp.highlights.map((h, hIdx) => (
                     <motion.li
                       key={hIdx}
-                      className="flex gap-3 text-sm text-foreground/60 leading-relaxed"
+                      className="flex gap-2.5 sm:gap-3 text-xs sm:text-sm text-foreground/60 leading-relaxed"
                       initial={{ opacity: 0, x: -10 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: idx * 0.1 + hIdx * 0.05 + 0.3 }}
                     >
                       <span
-                        className="mt-2 w-1.5 h-1.5 rounded-full flex-shrink-0"
+                        className="mt-1.5 sm:mt-2 w-1.5 h-1.5 rounded-full flex-shrink-0"
                         style={{ backgroundColor: exp.color, opacity: 0.6 }}
                       />
-                      <span>{h}</span>
+                      <span className="break-words min-w-0">{h}</span>
                     </motion.li>
                   ))}
                 </ul>

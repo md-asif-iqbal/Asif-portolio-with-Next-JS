@@ -35,10 +35,19 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
 }
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+img, svg, video, canvas, audio, iframe, embed, object {
+  max-width: 100%;
 }
 
 ::selection {
@@ -73,16 +82,33 @@ html {
   background: var(--card-bg);
   backdrop-filter: blur(20px) saturate(180%);
   border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 
+    0 4px 20px -2px rgba(0, 0, 0, 0.5),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.08);
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .glass-card:hover {
-  border-color: rgba(6, 182, 212, 0.2);
+  border-color: rgba(6, 182, 212, 0.3);
   box-shadow:
-    0 0 0 1px rgba(6, 182, 212, 0.1),
-    0 8px 32px rgba(6, 182, 212, 0.08),
-    0 24px 48px rgba(0, 0, 0, 0.4);
-  transform: translateY(-2px);
+    0 0 0 1px rgba(6, 182, 212, 0.15),
+    0 12px 36px -4px rgba(6, 182, 212, 0.14),
+    0 24px 48px -12px rgba(0, 0, 0, 0.6),
+    inset 0 1px 2px 0 rgba(255, 255, 255, 0.18);
+  transform: translateY(-3px);
+}
+
+/* 3D Transform Utilities */
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.perspective-1200 {
+  perspective: 1200px;
 }
 
 /* Animated gradient border */

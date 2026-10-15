@@ -76,15 +76,15 @@ export default function Contact(): JSX.Element {
 
   return (
     <Section id="contact" title="Get In Touch" subtitle="Contact">
-      <div className="grid gap-8 lg:grid-cols-5">
+      <div className="grid gap-6 lg:gap-8 lg:grid-cols-5">
         {/* Contact info */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          className="lg:col-span-2 space-y-4"
+          className="lg:col-span-2 space-y-3 sm:space-y-4"
         >
-          <p className="text-foreground/50 text-sm leading-relaxed mb-6">
+          <p className="text-foreground/50 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6">
             Have a project in mind or want to discuss potential opportunities? Feel free to reach out.
             I&#39;m always open to new collaborations.
           </p>
@@ -95,7 +95,7 @@ export default function Contact(): JSX.Element {
               href={item.href}
               target={item.href.startsWith("http") ? "_blank" : undefined}
               rel={item.href.startsWith("http") ? "noreferrer" : undefined}
-              className="flex items-center gap-3 glass-card rounded-xl px-4 py-3 group"
+              className="flex items-center gap-3 glass-card rounded-xl px-3.5 sm:px-4 py-2.5 sm:py-3 group w-full"
               initial={{ opacity: 0, x: -15 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -112,7 +112,7 @@ export default function Contact(): JSX.Element {
               >
                 {item.icon}
               </div>
-              <span className="text-sm text-foreground/60 group-hover:text-foreground/80 transition-colors truncate">
+              <span className="text-xs sm:text-sm text-foreground/60 group-hover:text-foreground/80 transition-colors truncate min-w-0">
                 {item.label}
               </span>
             </motion.a>
@@ -126,17 +126,17 @@ export default function Contact(): JSX.Element {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
           onSubmit={handleSubmit}
-          className="lg:col-span-3 glass-card rounded-2xl p-6 space-y-4"
+          className="lg:col-span-3 glass-card rounded-2xl p-4 sm:p-6 space-y-4 w-full"
         >
-          <div className="grid gap-4 sm:grid-cols-2">
-            <input required name="name" placeholder="Your name" className="input w-full" disabled={isSubmitting} />
-            <input required type="email" name="email" placeholder="Your email" className="input w-full" disabled={isSubmitting} />
+          <div className="grid gap-3.5 sm:gap-4 sm:grid-cols-2">
+            <input required name="name" placeholder="Your name" className="input w-full text-sm" disabled={isSubmitting} />
+            <input required type="email" name="email" placeholder="Your email" className="input w-full text-sm" disabled={isSubmitting} />
           </div>
           <textarea
             required
             name="message"
             placeholder="Your message..."
-            className="input w-full min-h-[140px] py-3 resize-none"
+            className="input w-full min-h-[130px] sm:min-h-[140px] py-3 text-sm resize-none"
             style={{ height: "auto" }}
             disabled={isSubmitting}
           />
@@ -160,9 +160,9 @@ export default function Contact(): JSX.Element {
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="p-4 bg-emerald-500/10 border border-emerald-500/20 rounded-xl"
+              className="p-3.5 sm:p-4 bg-emerald-500/10 border border-emerald-500/20 rounded-xl"
             >
-              <p className="text-emerald-400 text-sm">Message sent successfully! I&apos;ll get back to you soon.</p>
+              <p className="text-emerald-400 text-xs sm:text-sm">Message sent successfully! I&apos;ll get back to you soon.</p>
             </motion.div>
           )}
 
@@ -170,9 +170,9 @@ export default function Contact(): JSX.Element {
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="p-4 bg-red-500/10 border border-red-500/20 rounded-xl"
+              className="p-3.5 sm:p-4 bg-red-500/10 border border-red-500/20 rounded-xl"
             >
-              <p className="text-red-400 text-sm">{errorMessage || "Failed to send. Please try again."}</p>
+              <p className="text-red-400 text-xs sm:text-sm">{errorMessage || "Failed to send. Please try again."}</p>
             </motion.div>
           )}
         </motion.form>

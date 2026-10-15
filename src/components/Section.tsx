@@ -21,14 +21,14 @@ export default function Section({ id, className, title, subtitle, children }: Pr
   }, [isInView, controls]);
 
   return (
-    <section id={id} className={`mx-auto max-w-6xl px-4 sm:px-6 ${className ?? ""}`}>
+    <section id={id} className={`mx-auto max-w-6xl px-4 sm:px-6 w-full ${className ?? ""}`}>
       {(title || subtitle) && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mb-12"
+          className="mb-8 sm:mb-12"
         >
           {subtitle && (
             <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-cyan-400/70 mb-2">

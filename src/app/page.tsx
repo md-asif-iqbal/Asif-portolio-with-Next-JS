@@ -11,9 +11,9 @@ import Contact from "@/components/Contact";
 
 export default function Home() {
   return (
-    <div className="font-sans selection:bg-accent/30 selection:text-white">
+    <div className="font-sans selection:bg-accent/30 selection:text-white w-full overflow-x-hidden">
       <Header />
-      <main className="space-y-24 sm:space-y-32">
+      <main className="space-y-16 sm:space-y-24 lg:space-y-32 w-full overflow-x-hidden">
         <Hero />
         <About />
         <Skills />
@@ -26,15 +26,15 @@ export default function Home() {
 
         {/* Footer */}
         <footer
-          className="mx-auto max-w-6xl px-4 sm:px-6 pb-20 pt-8 border-t border-white/5"
+          className="mx-auto max-w-6xl px-4 sm:px-6 pb-12 sm:pb-20 pt-8 border-t border-white/5 w-full"
         >
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-sm text-foreground/40">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+            <p className="text-xs sm:text-sm text-foreground/40">
               © {new Date().getFullYear()}{" "}
               <span className="text-foreground/60">Md. Asif Iqbal</span>. All
               rights reserved.
             </p>
-            <p className="text-xs text-foreground/30">
+            <p className="text-[11px] sm:text-xs text-foreground/30">
               Built with{" "}
               <span className="text-accent">Next.js</span>,{" "}
               <span className="text-emerald-400">Tailwind</span> &{" "}

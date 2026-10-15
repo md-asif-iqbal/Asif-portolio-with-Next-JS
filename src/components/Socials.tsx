@@ -25,7 +25,7 @@ const links = [
 
 export default function Socials(): JSX.Element {
   return (
-    <div className="fixed bottom-8 left-6 z-50 hidden md:block">
+    <div className="fixed bottom-8 left-3 2xl:left-6 z-50 hidden xl:block">
       <ul className="flex flex-col items-center gap-3">
         {links.map(({ href, label, icon: Icon, hoverBg, hoverText, glow }, i) => (
           <motion.li

@@ -48,7 +48,7 @@ const achievements: Achievement[] = [
 export default function Achievements(): JSX.Element {
   return (
     <Section id="achievements" title="Achievements" subtitle="Highlights">
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {achievements.map((achievement, idx) => (
           <motion.a
             key={achievement.title}
@@ -64,10 +64,10 @@ export default function Achievements(): JSX.Element {
               borderColor: `${achievement.color}25`,
               boxShadow: `0 20px 50px ${achievement.color}12`,
             }}
-            className="glass-card rounded-2xl overflow-hidden group block"
+            className="glass-card rounded-2xl overflow-hidden group block w-full"
           >
             {/* Image */}
-            <div className="relative h-36 overflow-hidden bg-gradient-to-br from-white/5 to-white/[0.02]">
+            <div className="relative h-32 sm:h-36 overflow-hidden bg-gradient-to-br from-white/5 to-white/[0.02]">
               {achievement.image ? (
                 <>
                   <Image
@@ -84,13 +84,13 @@ export default function Achievements(): JSX.Element {
                   />
                 </>
               ) : (
-                <div className="absolute inset-0 flex items-center justify-center text-5xl opacity-40">
+                <div className="absolute inset-0 flex items-center justify-center text-4xl sm:text-5xl opacity-40">
                   {achievement.icon}
                 </div>
               )}
 
               {/* Year badge */}
-              <div className="absolute top-3 right-3">
+              <div className="absolute top-2.5 right-2.5 sm:top-3 sm:right-3">
                 <span
                   className="text-[10px] font-semibold px-2.5 py-1 rounded-full backdrop-blur-sm"
                   style={{
@@ -105,20 +105,20 @@ export default function Achievements(): JSX.Element {
             </div>
 
             {/* Content */}
-            <div className="p-5">
-              <h3 className="font-bold text-sm tracking-tight text-foreground/90 group-hover:text-foreground transition-colors leading-snug">
+            <div className="p-4 sm:p-5">
+              <h3 className="font-bold text-sm tracking-tight text-foreground/90 group-hover:text-foreground transition-colors leading-snug break-words">
                 {achievement.title}
               </h3>
-              <p className="text-xs text-foreground/40 mt-2 leading-relaxed">
+              <p className="text-xs text-foreground/40 mt-1.5 leading-relaxed">
                 {achievement.description}
               </p>
 
               {achievement.verificationLink && (
                 <div className="mt-3 flex items-center gap-1.5 text-[11px] font-medium" style={{ color: achievement.color }}>
-                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-3 h-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                   </svg>
-                  Verify Online
+                  <span>Verify Online</span>
                 </div>
               )}
             </div>

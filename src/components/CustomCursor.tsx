@@ -105,8 +105,8 @@ export default function CustomCursor() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed top-0 left-0 pointer-events-none z-[9998]"
-      style={{ width: "100vw", height: "100vh", opacity: 0.07, mixBlendMode: "screen" }}
+      className="fixed inset-0 w-full h-full pointer-events-none z-[9998]"
+      style={{ opacity: 0.07, mixBlendMode: "screen" }}
     />
   );
 }
